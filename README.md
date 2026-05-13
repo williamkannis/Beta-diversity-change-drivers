@@ -39,6 +39,11 @@ Cite as:
 * diversity_batch_functions.R:
 * effect_size_function.R:
 
+# Data
+
+Community data is avalable upon request after written approval from each data source. Trait data can be obatined BLANK. We provide raw alpha and beta diversity values which allow for users to replicate our analysis from script 10 and onward
+* 
+
 
 
 
