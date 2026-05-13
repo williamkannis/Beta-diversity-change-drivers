@@ -1,5 +1,12 @@
 # Source code for *Drivers of multifaceted beta diversity change in invaded stream fish communities*
 
+## Contact information and citation
+Name:
+Email:
+OrcID:
+
+Cite as:
+
 ## Analysis work flow
 
 ### Prepare input data - perform on local machine
