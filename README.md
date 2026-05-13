@@ -12,9 +12,21 @@
 *	05_obs_phy_alpha.sh:
 
 ### Calculate null divesiry values  - perform using HPC
-
+*	06_null_fun_beta.sh:
+*	07_null_phy_beta.sh:
+*	08_null_fun_alpha.sh:
+*	09_null_phy_alpha.sh:
 
 ### Calculate effect sizes - perform using HPC
+* 10_
+* 11_batch_ses.sh
+
+### Analysis scripts - perfom on local machine
+* 12_
+* 13_
+* 14_
+* 15
+
 
 
 
