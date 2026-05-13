@@ -25,7 +25,12 @@
 * 12_
 * 13_
 * 14_
-* 15
+* 15_
+
+### Helper functions
+* Null model algorithms.R:
+* diversity_batch_functions.R:
+* effect_size_function.R:
 
 
 
