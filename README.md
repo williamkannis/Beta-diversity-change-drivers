@@ -3,7 +3,7 @@
 ## Analysis work flow
 
 ### Prepare input data - perform on local machine
-01_null_input_creation.R: 
+* 01_null_input_creation.R: 
 
 ### Caclaute observed diversity values - perform using HPC
 
