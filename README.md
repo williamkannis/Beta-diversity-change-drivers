@@ -20,25 +20,26 @@ The below script
 The below shell scripts call in their corresponding R scripts to estimate observed beta diversity for the contemporary and native only species pools using one high performance computer nodes for each time step. Alpha diversity scripts estimate alpha diversity of only native species using one computer node.
 * ```02_obs_tax_beta.sh``` - ```02_obs_tax_beta.R```
 * ```03_obs_fun_beta.sh``` - ```03_obs_fun_beta.R```
-*	```04_obs_fun_alpha.sh```
-*	```05_obs_phy_alpha.sh```
+* ```04_obs_phy_beta.sh``` -```04_obs_phy_beta.R```
+*	```05_obs_fun_alpha.sh``` - ```05_obs_fun_alpha.R```
+*	```06_obs_phy_alpha.sh``` - ```06_obs_phy_alpha.R```
 
-### Calculate null divesiry values  - perform using HPC
-The below shell scripts call in their corresponding R scripts to estimate
-*	```06_null_fun_beta.sh```:
-*	```07_null_phy_beta.sh```:
-*	```08_null_fun_alpha.sh```:
-* ```09_null_phy_alpha.sh```:
+### Calculate null diversity values  - perform using HPC
+The below shell scripts call in their corresponding R scripts to estimate null iterations of beta diversity for the contemporary and native only species pools. Due to the high memory usage of kernel density functional beta diversity metrics, we were only able to estimate 2 iterations (2 cores) and 18gb of ram per computer node for a total of 2000 high performance nodes. For phylogenetic beta diversity, we were able to estimate 37 iterations simultaneous per computer node using 45gb of ram per node for a total of 6 high performance nodes. For alpha diversity metrics, we estimated only null iterations for the native species pool and this required less than half the resources of beta diversity null models. <ins>TIP:</ins> Number of nodes, cores per node, and memory per node will vary based on number of sites and methodology. Shell scripts can be edited to adjust these settings accordingly. We recommend that users experiment with memory and CPU requirements with smaller number of null iterations before running full job.
+*	```07_null_fun_beta.sh``` - ```07_null_fun_beta.R```
+*	```08_null_phy_beta.sh``` - ```08_null_phy_beta.R```
+*	```09_null_fun_alpha.sh``` - ```09_null_fun_alpha.R```
+* ```10_null_phy_alpha.sh``` - ```10_null_phy_alpha.R```
 
 ### Calculate effect sizes - perform using HPC
-* 10_
-* 11_batch_ses.sh
+* 11_
+* 12_batch_ses.sh
 
 ### Analysis scripts - perfom on local machine
-* 12_
 * 13_
 * 14_
 * 15_
+* 16_
 
 ### Helper functions
 * ```null_model_algorithms.R```: Contains algorithms to randomize community, trait, or phylogenetic data for null model analysis
