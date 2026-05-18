@@ -46,14 +46,21 @@ Cite as:
 Community data is avalable upon request after written approval from each data source. Trait data can be obatined BLANK. We provide raw alpha and beta diversity values which allow for users to replicate our analysis from script 10 and onward
 
 ## Communityy data
+Descritpyion of how to obtian and where to store
 
 ## Trait data
+Descritpyion of how to obtian and where to store
 
 ## Phylogentic data
+* tree_file:
+* tree_script:
 
 ## Beta diversisty data
 
+
 ## Spatial data
+
+
 
 
 
