@@ -16,10 +16,10 @@ Description
 To best take advantage of high performance computation, we need to format our data in a manner that allows for parallel processing of diversity metrics. As we need to estimate 999 null iterations of each diversity metric and species pool (native only and contemporary), we want to prepare input data that can run simultaneously. For beta diversity null models, we need to generate 999 shuffled trait matrices and phylogenetic trees. For native alpha diversity, we need to generate 999 random community matrices. A benefit to HPC is that processes can be ran on a high number of cores among multiple computer nodes. To take advantage of HPC, we need to divide the list of null traits, trees, and/or communities into chunks based on CPU and memory limits per each node. These chunk can be ran on separate computer nodes. This reduces memory requirements within nodes and allows for better queue times. The following script accomplishes the above tasks. 
 * ```01_null_input_creation.R```
 
-To store to store high performance computation input data, uses will need to create the below file directory and upload the entire directory to the high performance cluster storage
+To store to store high performance computation input data and resulting diveristy outputs, uses will need to create the below file directory and upload the entire directory to the high performance cluster storage.
 
 ```bash
-├── HPC_inputs
+├── HPC_data
     ├── beta_null_input_data
     │   ├── tax
     │   ├── fun
@@ -27,7 +27,9 @@ To store to store high performance computation input data, uses will need to cre
     ├── alpha_null_input
     │   ├── fun
     │   ├── phy
-    └── beta_obs_input_data
+    │── beta_obs_input_data
+    │── null_out
+    └── obs_out
 ```
 
 ### Calculate observed diversity values - perform using HPC
@@ -45,7 +47,7 @@ The below shell scripts call in their corresponding R scripts to estimate null i
 *	```07_null_fun_beta.sh``` - ```07_null_fun_beta.R```
 *	```08_null_phy_beta.sh``` - ```08_null_phy_beta.R```
 *	```09_null_fun_alpha.sh``` - ```09_null_fun_alpha.R```
-* ```10_null_phy_alpha.sh``` - ```10_null_phy_alpha.R```
+*   ```10_null_phy_alpha.sh``` - ```10_null_phy_alpha.R```
 
 <ins>TIP:</ins> Number of nodes, cores per node, and memory per node will vary based on number of sites and methodology. Shell scripts can be edited to adjust these settings accordingly. For example: 1000 nodes: ```#SBATCH --array=1-1000```, 2 CPU cores per node: ```SBATCH --cpus-per-task=2 ```, 18gb ram per node :```#SBATCH --mem=18gb```. We recommend that users experiment with memory and CPU requirements with smaller number of null iterations before running full job.
 
