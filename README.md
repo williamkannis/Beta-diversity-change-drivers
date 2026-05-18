@@ -13,19 +13,22 @@ Cite as:
 Description
 
 ### Prepare input data - perform on local machine
-* 01_null_input_creation.R: 
+The below script 
+* ```01_null_input_creation.R```
 
-### Caclaute observed diversity values - perform using HPC
-* 02_obs_tax_beta.sh:
-* 03_obs_fun_beta.sh:
-*	04_obs_fun_alpha.sh:
-*	05_obs_phy_alpha.sh:
+### Calculate observed diversity values - perform using HPC
+The below shell scripts call in their corresponding R scripts to estimate observed beta diversity for the contemporary and native only species pools using one high performance computer nodes for each time step. Alpha diversity scripts estimate alpha diversity of only native species using one computer node.
+* ```02_obs_tax_beta.sh``` - ```02_obs_tax_beta.R```
+* ```03_obs_fun_beta.sh``` - ```03_obs_fun_beta.R```
+*	```04_obs_fun_alpha.sh```
+*	```05_obs_phy_alpha.sh```
 
 ### Calculate null divesiry values  - perform using HPC
-*	06_null_fun_beta.sh:
-*	07_null_phy_beta.sh:
-*	08_null_fun_alpha.sh:
-*	09_null_phy_alpha.sh:
+The below shell scripts call in their corresponding R scripts to estimate
+*	```06_null_fun_beta.sh```:
+*	```07_null_phy_beta.sh```:
+*	```08_null_fun_alpha.sh```:
+* ```09_null_phy_alpha.sh```:
 
 ### Calculate effect sizes - perform using HPC
 * 10_
@@ -38,9 +41,9 @@ Description
 * 15_
 
 ### Helper functions
-* Null model algorithms.R:
-* diversity_batch_functions.R:
-* effect_size_function.R:
+* ```null_model_algorithms.R```: Contains algorithms to randomize community, trait, or phylogenetic data for null model analysis
+* ```diversity_batch_functions.R```: Contains functions that estimate multiple iterations of diversity metrics using parallel computation.
+* ```effect_size_function.R```:
 
 
 ## Diversity Input Data
@@ -61,6 +64,9 @@ Harmonized community data is avalable upon request after written approval from e
 Raw trait data obtained from publicly available datasets and upon request should be stored ```Diversity Input Data/```.
 * ```trait_data_prep.R```: Compile trait data for all 449 fish. This script uses trait data from two trait databases and fills in missing trait values based on phylogenetic relationships and literature review. The output of this script was used to calculate functional beta diversity. <ins>NOTE:</ins> Running this script requires users to download the publicly available data set from [Frimpong & Angermeier (2009)](https://www.sciencebase.gov/catalog/item/5a7c6e8ce4b00f54eb2318c0) and request the database from [Giam & Olden (2016)](https://doi.org/10.1111/geb.12475).
   
+
+## HPC Input Data ```HPC_inputs```
+
 
 ## Diversity Output Data
 
