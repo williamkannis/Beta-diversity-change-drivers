@@ -48,7 +48,7 @@ We are not able to publicly provide all the data necessary to replicate the mult
 
 
 ### Community  data
-Harmonized community data is avalable upon request after written approval from each data source in appendix 1 of manuscript. Community data should be stored: BLANK. While we cannot publicly share raw community data, we provide the list of species in the analysis for use in the trait and phylogenetic data preparation scripts.
+Harmonized community data is avalable upon request after written approval from each data source in appendix 1 of manuscript. Community data should be stored: ```Diversity Input Data/```. While we cannot publicly share raw community data, we provide the list of species in the analysis for use in the trait and phylogenetic data preparation scripts.
 * ```full_species_list.csv```: List of all species in the community data set before filtering, used for construction of phylogenetic super tree and compilation of trait data.
 * ```filtered_species_list.csv```: List of all species in the community data set after filtering, used for to trim tree and compile trait data. 
 * ```community_data_prep.R```: Compiles stream fish community data at the stream segment scale for the conterminous United States (US) and to filter data to only include comparable surveys based on sampling methods. This code also rarefies stream segments based on hydrological region to ensure consistent sampling densities across the study extent. Finally, stream segments are split into two species pools, a contemporary that includes all species records, and native only species pool, which represents communities before nonnative introductions. <ins>NOTE:</ins> Running this script requires data not publicly available without data requests.
@@ -58,7 +58,7 @@ Harmonized community data is avalable upon request after written approval from e
 * ```phylo_data_prep.R```: Compiles phylogenetic data from multiple trees into a super tree that includes all 449 fish species in the analysis. This script loads in a compressive fish phylogeny from the [Fish Tree of Life](https://fishtreeoflife.org/), and uses downloaded data from [TimeTree](http://www.timetree.org/) and other publicly available datasets to fill in missing species. The output of this script was used to estimate missing trait values and to calculate phylogenetic beta diversity. <ins>NOTE:</ins> Running this script requires users to download all phylogenetic trees from their original data sources found in Appendix 3 of manuscript.
 
 ### Trait data
-Raw trait data obtained from publicly available datasets and upon request should be stored BLANK.
+Raw trait data obtained from publicly available datasets and upon request should be stored ```Diversity Input Data/```.
 * ```trait_data_prep.R```: Compile trait data for all 449 fish. This script uses trait data from two trait databases and fills in missing trait values based on phylogenetic relationships and literature review. The output of this script was used to calculate functional beta diversity. <ins>NOTE:</ins> Running this script requires users to download the publicly available data set from [Frimpong & Angermeier (2009)](https://www.sciencebase.gov/catalog/item/5a7c6e8ce4b00f54eb2318c0) and request the database from [Giam & Olden (2016)](https://doi.org/10.1111/geb.12475).
   
 
