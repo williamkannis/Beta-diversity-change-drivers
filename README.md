@@ -100,14 +100,16 @@ After running the above scripts, download the entire ```HPC_data``` directory to
 <ins>NOTE:</ins> This is final step for creating null model effect sizes for alpha, beta, and LCBD diversity values. All remaining workflow is for replication of the manuscripts results
 
 ### Spatial plotting - perfom on local machine
-* 14_
+
+Aggregates the delta LCBD values from stream segment to HUC6 basin resolution to visualize spatial patterns of changes in LCBD of total beta diversity.
+* ```15_lcbd_spatial.R```
 
 ### Redundancy analaysis - perfom on local machine
 The below script prepares the explanatory variables for used in redundancy analysis (RDA) of multidimensional changes in LCBD. The script loads in data for nonnative origin based invadedness, propagule pressure, abiotic habitat characteristics, habitat alteration, and native alpha diversity and LCBD. We make all data for explanatory variable available or explain how to access the data. See [BLANK]() for more information.
-* 15_
+* ```16_```
 
 The below script conducts forward selection, redundancy analysis, and variance partition for both raw (observed) and null model standardized (ES) change in LCBD values. Script also contains code to export tables and plots for analyses.
-* 16_
+* ```17_```
 
 ### Helper functions
 * ```null_model_algorithms.R```: Contains algorithms to randomize community, trait, or phylogenetic data for null model analysis
