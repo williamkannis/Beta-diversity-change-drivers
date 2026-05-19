@@ -76,12 +76,18 @@ The below shell scripts call in their corresponding R scripts to estimate null i
 
 <ins>TIP:</ins> Number of nodes, cores per node, and memory per node will vary based on number of sites and methodology. Shell scripts can be edited to adjust these settings accordingly. For example: 1000 nodes: ```#SBATCH --array=1-1000```, 2 CPU cores per node: ```SBATCH --cpus-per-task=2 ```, 18gb ram per node :```#SBATCH --mem=18gb```. We recommend that users experiment with memory and CPU requirements with smaller number of null iterations before running full job.
 
+<ins>NOTE:</ins> We provide the raw observed and null output files for these scripts. See BLANK for more details
+
 ### Calculate effect sizes - perform using HPC
-Observed and null model outputs were exported in multiple files, reflecting the multi-nodal processing. We nned to consilidate these files into single files that contain a list of each null iterations. Use the below script to consilidate null model
+Observed and null model outputs were exported in multiple files, reflecting the multi-nodal processing. We need to consolidate these files into single files that contain a list of each null iteration.  The below shell scripts run their respective R script to consolidate null model outputs into single files, separate native and contemporary species pool values, estimate the difference in diversity over time (delta), and export a single file for each diversity metric (i.e., alpha, total beta, replacement, richness difference, LCBD) for the contemporary species pool, native only species pool, and delta values.
+
 * ```11_beta_null_model_prep.sh``` - ```11_beta_null_model_prep.R```
 * ```12_alpha_null_model_prep.sh``` - ```12_alpha_null_model_prep.R```
 
-NEXT PARAGRAPH
+<ins>NOTE:</ins> We provide the resulting nill model input lists. See BLANK for more details.
+
+The lists from the functions above contain the observed values and a list of null iterations for each metric and species pool. The following shell script will run the respective R script, which estimates standardize effect sizes of each single metric. This step involves calling in a SES function created for this project: ```effect_size_function.R```. This function
+
 * ```13_batch_ses.sh``` - ```13_batch_ses.R```
 
 After running the above scripts, download the entire ```HPC_data``` directory to local machine.
