@@ -86,14 +86,16 @@ Observed and null model outputs were exported in multiple files, reflecting the 
 
 <ins>NOTE:</ins> We provide the resulting nill model input lists. See BLANK for more details.
 
-The lists from the functions above contain the observed values and a list of null iterations for each metric and species pool. The following shell script will run the respective R script, which estimates standardize effect sizes of each single metric. This step involves calling in a SES function created for this project: ```effect_size_function.R```. This function is flexible a takes a range of input formats such as dataframes, vectors, matrices, and distance objects, and maintains this format in the exported values. The function estimates standardize effect sizes in the traditional z score method. Additionally empirical p-values, and p-value based effect sizes are calculated. Finally the function reports optional diagnostic metric to assess if null distributions are symmetrical and normal. Unsymmetrical null distributions should be assessed using empirical p-value based effect sizes rather than z-score based SES. See [Botta-Dukát (2018](https://doi.org/10.1556/168.2018.19.1.8) for more information on selecting SES or p-value based ES.
+The lists from the functions above contain the observed values and a list of null iterations for each metric and species pool. The following shell script will run the respective R script, which estimates standardize effect sizes (SES) of each single metric. This step involves calling in a SES function created for this project: ```effect_size_function.R```. This function is flexible a takes a range of input formats such as dataframes, vectors, matrices, and distance objects, and maintains this format in the exported values. The function estimates standardize effect sizes in the traditional z score method (SES). Additionally empirical p-values, and p-value based effect sizes (ES) are calculated. Finally the function reports optional diagnostic metric to assess if null distributions are symmetrical and normal. Unsymmetrical null distributions should be assessed using empirical p-value based effect sizes rather than z-score based SES. See [Botta-Dukát (2018](https://doi.org/10.1556/168.2018.19.1.8) for more information on selecting SES or p-value based ES.
 
 * ```13_batch_ses.sh``` - ```13_batch_ses.R```
 
 After running the above scripts, download the entire ```HPC_data``` directory to local machine.
 
 ### Summarize null model results - perfom on local machine
-* 13_
+
+
+* ```14_```
 
 <ins>NOTE:</ins> This is final step for creating null model effect sizes for alpha, beta, and LCBD diversity values. All remaining workflow is for replication of the manuscripts results
 
@@ -101,7 +103,10 @@ After running the above scripts, download the entire ```HPC_data``` directory to
 * 14_
 
 ### Redundancy analaysis - perfom on local machine
+The below script prepares the explanatory variables for used in redundancy analysis (RDA) of multidimensional changes in LCBD. The script loads in data for nonnative origin based invadedness, propagule pressure, abiotic habitat characteristics, habitat alteration, and native alpha diversity and LCBD. We make all data for explanatory variable available or explain how to access the data. See [BLANK]() for more information.
 * 15_
+
+The below script conducts forward selection, redundancy analysis, and variance partition for both raw (observed) and null model standardized (ES) change in LCBD values. Script also contains code to export tables and plots for analyses.
 * 16_
 
 ### Helper functions
