@@ -86,7 +86,7 @@ Observed and null model outputs were exported in multiple files, reflecting the 
 
 <ins>NOTE:</ins> We provide the resulting nill model input lists. See BLANK for more details.
 
-The lists from the functions above contain the observed values and a list of null iterations for each metric and species pool. The following shell script will run the respective R script, which estimates standardize effect sizes of each single metric. This step involves calling in a SES function created for this project: ```effect_size_function.R```. This function
+The lists from the functions above contain the observed values and a list of null iterations for each metric and species pool. The following shell script will run the respective R script, which estimates standardize effect sizes of each single metric. This step involves calling in a SES function created for this project: ```effect_size_function.R```. This function is flexible a takes a range of input formats such as dataframes, vectors, matrices, and distance objects, and maintains this format in the exported values. The function estimates standardize effect sizes in the traditional z score method. Additionally empirical p-values, and p-value based effect sizes are calculated. Finally the function reports optional diagnostic metric to assess if null distributions are symmetrical and normal. Unsymmetrical null distributions should be assessed using empirical p-value based effect sizes rather than z-score based SES. See [Botta-Dukát (2018](https://doi.org/10.1556/168.2018.19.1.8) for more information on selecting SES or p-value based ES.
 
 * ```13_batch_ses.sh``` - ```13_batch_ses.R```
 
