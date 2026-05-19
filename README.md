@@ -76,15 +76,11 @@ The below shell scripts call in their corresponding R scripts to estimate null i
 
 <ins>TIP:</ins> Number of nodes, cores per node, and memory per node will vary based on number of sites and methodology. Shell scripts can be edited to adjust these settings accordingly. For example: 1000 nodes: ```#SBATCH --array=1-1000```, 2 CPU cores per node: ```SBATCH --cpus-per-task=2 ```, 18gb ram per node :```#SBATCH --mem=18gb```. We recommend that users experiment with memory and CPU requirements with smaller number of null iterations before running full job.
 
-<ins>NOTE:</ins> We provide the raw observed and null output files for these scripts. See BLANK for more details
-
 ### Calculate effect sizes - perform using HPC
 Observed and null model outputs were exported in multiple files, reflecting the multi-nodal processing. We need to consolidate these files into single files that contain a list of each null iteration.  The below shell scripts run their respective R script to consolidate null model outputs into single files, separate native and contemporary species pool values, estimate the difference in diversity over time (delta), and export a single file for each diversity metric (i.e., alpha, total beta, replacement, richness difference, LCBD) for the contemporary species pool, native only species pool, and delta values.
 
 * ```11_beta_null_model_prep.sh``` - ```11_beta_null_model_prep.R```
 * ```12_alpha_null_model_prep.sh``` - ```12_alpha_null_model_prep.R```
-
-<ins>NOTE:</ins> We provide the resulting nill model input lists. See BLANK for more details.
 
 The lists from the functions above contain the observed values and a list of null iterations for each metric and species pool. The following shell script will run the respective R script, which estimates standardize effect sizes (SES) of each single metric. This step involves calling in a SES function created for this project: ```effect_size_function.R```. This function is flexible a takes a range of input formats such as dataframes, vectors, matrices, and distance objects, and maintains this format in the exported values. The function estimates standardize effect sizes in the traditional z score method (SES). Additionally empirical p-values, and p-value based effect sizes (ES) are calculated. Finally the function reports optional diagnostic metric to assess if null distributions are symmetrical and normal. Unsymmetrical null distributions should be assessed using empirical p-value based effect sizes rather than z-score based SES. See [Botta-Dukát (2018](https://doi.org/10.1556/168.2018.19.1.8) for more information on selecting SES or p-value based ES.
 
@@ -93,11 +89,11 @@ The lists from the functions above contain the observed values and a list of nul
 After running the above scripts, download the entire ```HPC_data``` directory to local machine.
 
 ### Summarize null model results - perform on local machine
+Batch SES processing results in a single file for each diversity metric. The following R script compiles and formats the resulting SES, ES, and diagnostic stats across files. Here, we can visualize the normality diagnostics and determine if we need to use SES or ES values for further analysis. The script also visualizes beta diversity and LCBD change values and creates plots for the manuscript. Finally, the script prepares and exports native alpha/LCBD and delta LCBD for use in the manuscripts analyses.
 
+* ```14_ses_comp.R```
 
-* ```14_```
-
-<ins>NOTE:</ins> This is final step for creating null model effect sizes for alpha, beta, and LCBD diversity values. All remaining workflow is for replication of the manuscripts results
+<ins>NOTE:</ins> This is final step for creating null model effect sizes for alpha, beta, and LCBD diversity values. All remaining workflow is for replication of the manuscripts results. Additionally, we provide the raw and summarized observed and null iterations, as well as the formatted alpha and LCBD values used for manuscripts analyses. See [BLANK]() for more details. THINK ABOUT WHAT DATA TO SHARE HERE
 
 ### Spatial plotting - perform on local machine
 
