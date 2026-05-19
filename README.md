@@ -10,15 +10,17 @@ OrcID:
 Cite as:
 
 ## Analysis work flow
-Description
+HERE WE PROVIDE A GENERAL WORKFLOW FOR ESTIMATING NULL MODEL STANDARDIZATED BETA,LCBD, AND ALPHA DIVERSITY, WHICH WE USED TO CREATE THE DIVERSTIY VALUES USED IN OUR ANALYSIS. WE PROVIDE ADDITIONAL CODE AND WORKFLOW INFORMATION REGARDING THE FILTERING AND FROMATING OF THE DIVEISTY INPUT DATA (I.E., COMMUNITY, TRAIT, PHYLONGETY) IN THE APPOROIRATE SECTION. THIS IS PROVIDED FOR REPLICATION PURPOSES AND IS NOT INTENDED TO BE USED AS A GUIDE DUE TO THE WIDE RANGE IN DATA FORMATS
 
-### Prepare input data - perform on local machine
-To best take advantage of high performance computation, we need to format our data in a manner that allows for parallel processing of diversity metrics. As we need to estimate 999 null iterations of each diversity metric and species pool (native only and contemporary), we want to prepare input data that can run simultaneously. For beta diversity null models, we need to generate 999 shuffled trait matrices and phylogenetic trees. For native alpha diversity, we need to generate 999 random community matrices. A benefit to HPC is that processes can be ran on a high number of cores among multiple computer nodes. To take advantage of HPC, we need to divide the list of null traits, trees, and/or communities into chunks based on CPU and memory limits per each node. These chunk can be ran on separate computer nodes. This reduces memory requirements within nodes and allows for better queue times. The following script accomplishes the above tasks. 
-* ```01_null_input_creation.R```
-
-To store to store high performance computation input data and resulting diveristy outputs, uses will need to create the below file directory and upload the entire directory to the high performance cluster storage.
+### Create file directories
+To store to store diveristy input data (e.g. community, trait, phylogneny), formated high performance computation input data, and the resulting diveristy outputs, uses will need to create the below file directory. and upload the entire ```HPC_data``` directory to the high performance cluster storage.
 
 ```bash
+├── Diversity Input Data
+│   ├── mod_com_diversity_input.rds
+│   ├── his_com_diversity_input.rds
+│   ├── trait_diversity_input.rds
+│   ├── phylo_tree.rds
 ├── HPC_data
     ├── beta_null_input_data
     │   ├── tax
@@ -31,6 +33,24 @@ To store to store high performance computation input data and resulting diverist
     │── null_out
     └── obs_out
 ```
+Place community data for both species pools (contemporary and native), trait data, and phylongetic trees in ```Diversity Input Data``` with the following names: 
+* ```mod_com_diversity_input.rds```: Community data for contemporary species pool. Dataframe or matrix with rows for sites and columns for species. Can contain an optional column ```HUC_12``` which represent regions and can be used to define regional species pools.
+* ```his_com_diversity_input.rds```: Community data for native-only species pool. Same structure as ```mod_com_diversity_input.rds```
+* ```trait_diversity_input.rds```: Trait data for all species in community data. Dataframe or matrix with rows for species and columns for traits.
+* ```phylo_tree.rds```: Phylogenetic tree for all species in community data
+
+<ins>NOTE:</ins> We cannot provide raw community or trait data used in the manuscript without completed data requests, but we do provide the phylogenetic tree and scripts used to format and filter the trait and community data. See [Diversity Input Data](#diversity-input-data) for more information
+
+### Prepare input data - perform on local machine
+To best take advantage of high performance computation, we need to format our data in a manner that allows for parallel processing of diversity metrics. As we need to estimate 999 null iterations of each diversity metric and species pool (native only and contemporary), we want to prepare input data that can run simultaneously. For beta diversity null models, we need to generate 999 shuffled trait matrices and phylogenetic trees. For native alpha diversity, we need to generate 999 random community matrices. A benefit to HPC is that processes can be ran on a high number of cores among multiple computer nodes. To take advantage of HPC, we need to divide the list of null traits, trees, and/or communities into chunks based on CPU and memory limits per each node. These chunk can be ran on separate computer nodes. This reduces memory requirements within nodes and allows for better queue times. 
+
+The following script imports ```mod_com_diversity_input.rds```, ```his_com_diversity_input.rds```, ```trait_diversity_input.rds```, and ```phylo_tree.rds```. These data are then used to create reduced functional space using PCoA and trims trees to fit community data. Both observed and null input data lists for alpha and beta diversity are then created and divided into chunks to run on separate HPC nodes.
+* ```01_null_input_creation.R```
+
+After running the above script, upload the entire ```HPC_data``` directory to the high performance cluster storage.
+
+<ins>NOTE:</ins> This script only contains code to shuffle communities using taxa-swap and a regionally-constrained taxa-swap null model algorithms, which are ran using functions called from ```null_model_algorithms.R```. While the algorithms provided were best suited for functional and phylogenetic beta diversity, they may not be suited for all null model purposes. Users should research the best model for their usage and modify ```01_null_input_creation.R``` and ```null_model_algorithms.R``` accordingly.
+
 
 ### Calculate observed diversity values - perform using HPC
 The below shell scripts call in their corresponding R scripts to estimate observed beta diversity for the contemporary and native only species pools using one high performance computer nodes for each time step. Alpha diversity scripts estimate alpha diversity of only native species using one computer node.
