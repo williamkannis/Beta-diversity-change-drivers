@@ -92,19 +92,19 @@ The lists from the functions above contain the observed values and a list of nul
 
 After running the above scripts, download the entire ```HPC_data``` directory to local machine.
 
-### Summarize null model results - perfom on local machine
+### Summarize null model results - perform on local machine
 
 
 * ```14_```
 
 <ins>NOTE:</ins> This is final step for creating null model effect sizes for alpha, beta, and LCBD diversity values. All remaining workflow is for replication of the manuscripts results
 
-### Spatial plotting - perfom on local machine
+### Spatial plotting - perform on local machine
 
-Aggregates the delta LCBD values from stream segment to HUC6 basin resolution to visualize spatial patterns of changes in LCBD of total beta diversity.
+The following script aggregates the delta LCBD values from stream segment to HUC6 basin resolution to visualize spatial patterns of changes in LCBD of total beta diversity. Shapefiles are exported into Qgis for mapping and formatting
 * ```15_lcbd_spatial.R```
 
-### Redundancy analaysis - perfom on local machine
+### Redundancy analaysis - perform on local machine
 The below script prepares the explanatory variables for used in redundancy analysis (RDA) of multidimensional changes in LCBD. The script loads in data for nonnative origin based invadedness, propagule pressure, abiotic habitat characteristics, habitat alteration, and native alpha diversity and LCBD. We make all data for explanatory variable available or explain how to access the data. See [BLANK]() for more information.
 * ```16_```
 
