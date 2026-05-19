@@ -1,19 +1,22 @@
 # Source code for *Drivers of multifaceted beta diversity change in invaded stream fish communities*
 
 ## Contact information and citation
+
+```bash
 Name:
 
 Email:
 
 OrcID:
-
+```
 Cite as:
+> CITE
 
-## Analysis work flow
+## Null model work flow
 HERE WE PROVIDE A GENERAL WORKFLOW FOR ESTIMATING NULL MODEL STANDARDIZATED BETA,LCBD, AND ALPHA DIVERSITY, WHICH WE USED TO CREATE THE DIVERSTIY VALUES USED IN OUR ANALYSIS. WE PROVIDE ADDITIONAL CODE AND WORKFLOW INFORMATION REGARDING THE FILTERING AND FROMATING OF THE DIVEISTY INPUT DATA (I.E., COMMUNITY, TRAIT, PHYLONGETY) IN THE APPOROIRATE SECTION. THIS IS PROVIDED FOR REPLICATION PURPOSES AND IS NOT INTENDED TO BE USED AS A GUIDE DUE TO THE WIDE RANGE IN DATA FORMATS
 
 ### Create file directories
-To store to store diveristy input data (e.g. community, trait, phylogneny), formated high performance computation input data, and the resulting diveristy outputs, uses will need to create the below file directory. and upload the entire ```HPC_data``` directory to the high performance cluster storage.
+To store to store diversity input data (e.g. community, trait, phylogeny), formatted high performance computation input data, and the resulting diversity outputs, users will need to create the below file directory. and upload the entire ```HPC_data``` directory to the high performance cluster storage.
 
 ```bash
 ├── Diversity Input Data
@@ -38,6 +41,8 @@ Place community data for both species pools (contemporary and native), trait dat
 * ```his_com_diversity_input.rds```: Community data for native-only species pool. Same structure as ```mod_com_diversity_input.rds```
 * ```trait_diversity_input.rds```: Trait data for all species in community data. Dataframe or matrix with rows for species and columns for traits.
 * ```phylo_tree.rds```: Phylogenetic tree for all species in community data
+
+Leave ```HPC_data``` folders empty, outputs from subsequent scripts will populate these folders
 
 <ins>NOTE:</ins> We cannot provide raw community or trait data used in the manuscript without completed data requests, but we do provide the phylogenetic tree and scripts used to format and filter the trait and community data. See [Diversity Input Data](#diversity-input-data) for more information
 
@@ -72,12 +77,24 @@ The below shell scripts call in their corresponding R scripts to estimate null i
 <ins>TIP:</ins> Number of nodes, cores per node, and memory per node will vary based on number of sites and methodology. Shell scripts can be edited to adjust these settings accordingly. For example: 1000 nodes: ```#SBATCH --array=1-1000```, 2 CPU cores per node: ```SBATCH --cpus-per-task=2 ```, 18gb ram per node :```#SBATCH --mem=18gb```. We recommend that users experiment with memory and CPU requirements with smaller number of null iterations before running full job.
 
 ### Calculate effect sizes - perform using HPC
-* 11_
-* 12_batch_ses.sh
+Observed and null model outputs were exported in multiple files, reflecting the multi-nodal processing. We nned to consilidate these files into single files that contain a list of each null iterations. Use the below script to consilidate null model
+* ```11_beta_null_model_prep.sh``` - ```11_beta_null_model_prep.R```
+* ```12_alpha_null_model_prep.sh``` - ```12_alpha_null_model_prep.R```
 
-### Analysis scripts - perfom on local machine
+NEXT PARAGRAPH
+* ```13_batch_ses.sh``` - ```13_batch_ses.R```
+
+After running the above scripts, download the entire ```HPC_data``` directory to local machine.
+
+### Summarize null model results - perfom on local machine
 * 13_
+
+<ins>NOTE:</ins> This is final step for creating null model effect sizes for alpha, beta, and LCBD diversity values. All remaining workflow is for replication of the manuscripts results
+
+### Spatial plotting - perfom on local machine
 * 14_
+
+### Redundancy analaysis - perfom on local machine
 * 15_
 * 16_
 
