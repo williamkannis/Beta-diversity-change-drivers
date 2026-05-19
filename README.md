@@ -1,5 +1,5 @@
 # Source code for *Drivers of multifaceted beta diversity change in invaded stream fish communities*
-
+MAYBE INCLUDE TAXONOMIC NULL MODELS BUT SAT THEY WERE NOT USED FOR THIS ANALYSIS
 ## Contact information and citation
 
 ```bash
@@ -12,11 +12,11 @@ OrcID:
 Cite as:
 > CITE
 
-## Null model work flow
-HERE WE PROVIDE A GENERAL WORKFLOW FOR ESTIMATING NULL MODEL STANDARDIZATED BETA,LCBD, AND ALPHA DIVERSITY, WHICH WE USED TO CREATE THE DIVERSTIY VALUES USED IN OUR ANALYSIS. WE PROVIDE ADDITIONAL CODE AND WORKFLOW INFORMATION REGARDING THE FILTERING AND FROMATING OF THE DIVEISTY INPUT DATA (I.E., COMMUNITY, TRAIT, PHYLONGETY) IN THE APPOROIRATE SECTION. THIS IS PROVIDED FOR REPLICATION PURPOSES AND IS NOT INTENDED TO BE USED AS A GUIDE DUE TO THE WIDE RANGE IN DATA FORMATS
+## Analysis work flow
+Here, we provide code and a general workflow for calculating null model standardized alpha diversity, beta diversity, and LCBD values. Standardized effect sizes (SES) are calculated for two species pools (contemporary and native only), as well as for the change in diversity between species pools. See the manuscript for more detailed methodology and justification. This workflow is designed to run using R on local machines with the more intensive calculations ran using high performance computing clusters via the slurm interface and shell scripts. R and shell scripts are numbered in order of workflow.  Scripts 1-14 are general so that users can calculate SES of their own diversity values. We used this framework to create the diversity values used the analyses in this manuscript. Scripts 15-17 are less general and provided with the goal of transparency and result replication. We provided both raw and formatted null model data to replicate analyses from Script XX and forward. We are unable to directly provide the raw community or trait data that facilitate replication of scripts 1-XX, but provide additional code and workflow information regarding the filtering and formatting of the diversity input data (i.e., community, trait, phylogeny). The final phylogenetic tree, and information for accessing community and trait data can be found [here](#diversity-input-data).
 
 ### Create file directories
-To store to store diversity input data (e.g. community, trait, phylogeny), formatted high performance computation input data, and the resulting diversity outputs, users will need to create the below file directory. and upload the entire ```HPC_data``` directory to the high performance cluster storage.
+To store to store diversity input data (e.g. community, trait, phylogeny), formatted high performance computation input data, and the resulting diversity outputs, users will need to create the below file directory. 
 
 ```bash
 ├── Diversity Input Data
@@ -26,7 +26,6 @@ To store to store diversity input data (e.g. community, trait, phylogeny), forma
 │   ├── phylo_tree.rds
 ├── HPC_data
     ├── beta_null_input_data
-    │   ├── tax
     │   ├── fun
     │   ├── phy
     ├── alpha_null_input
@@ -34,7 +33,9 @@ To store to store diversity input data (e.g. community, trait, phylogeny), forma
     │   ├── phy
     │── beta_obs_input_data
     │── null_out
-    └── obs_out
+    │── obs_out
+    │── ses_inputs
+    └── ses_outputs
 ```
 Place community data for both species pools (contemporary and native), trait data, and phylongetic trees in ```Diversity Input Data``` with the following names: 
 * ```mod_com_diversity_input.rds```: Community data for contemporary species pool. Dataframe or matrix with rows for sites and columns for species. Can contain an optional column ```HUC_12``` which represent regions and can be used to define regional species pools.
@@ -97,7 +98,7 @@ Batch SES processing results in a single file for each diversity metric. The fol
 
 ### Spatial plotting - perform on local machine
 
-The following script aggregates the delta LCBD values from stream segment to HUC6 basin resolution to visualize spatial patterns of changes in LCBD of total beta diversity. Shapefiles are exported into Qgis for mapping and formatting
+The following script aggregates the delta LCBD values from stream segment to HUC6 basin resolution to visualize spatial patterns of changes in LCBD of total beta diversity. Shapefiles are exported into QGIS for mapping and formatting
 * ```15_lcbd_spatial.R```
 
 ### Redundancy analaysis - perform on local machine
