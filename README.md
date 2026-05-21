@@ -42,7 +42,7 @@ First, download the ```Scripts``` folder (all users) and all data from [Zenodo R
 │   │── ses_inputs
 │   └── ses_outputs
 ├── Diversity Output Data
-└── 
+└── analysis_data
 ```
 Place community data for both species pools (contemporary and native), trait data, and phylongetic trees in ```Diversity Input Data``` with the following names: 
 * ```mod_com_diversity_input.rds```: Community data for contemporary species pool. Dataframe or matrix with rows for sites and columns for species. Can contain an optional column ```HUC_12``` which represent regions and can be used to define regional species pools.
@@ -200,7 +200,6 @@ The structure of the values in each list item are dependent on diversity metric:
 * alpha: named numeric objects.
 
 
-
 ## Diversity Output Data
 The combined observed and summarized effect size data for native alpha, native LCBD, and delta LCBD can be downloaded from ```Diversity Output Data.zip``` at the [Zenodo repository]() and unzipped into the working directory. These data can be used to replicate the spatial, redundancy, and variance partitioning analyses.
 
@@ -234,11 +233,18 @@ The combined observed and summarized effect size data for native alpha, native L
 OVERVIEW DESCRIPTION. TALK ABOUT HOW RESPONSE DATA IS IN PREVIOUS STEP
 
 ### Spatial data
-WHERE TO FIND HUC SHAPEFILES
+We mapped the spatial distribution of changes in LCBD by aggregating data to the HUC6 basin level. Doing so requires a bridge between COMIDs and HUC6, which we provide
+* ```BLANK.rds```: Links HUC6 watersheds to COMID stream segments. Data frame with columns for:
+    * COMID
+    * HUC6
+
+```BLANK.rds``` can be used to merge LCBD values into HUC6 shapefiles, which can be downloaded from the [USGS National Hydrography Watershed Boundary Dataset](https://www.usgs.gov/national-hydrography/watershed-boundary-dataset). Once downloaded, place files in ```analysis_data/``` directory
+
 
 ### Origin-based invadedness
-*
-*
+We estimated the effects community invadedness by nonnative species of differnt geographic orgins on changes in LCBD. We used the raw community data estimated total species richness, native species richness, and the richness of three classes of nonnative species using origin-base defintions intoduced by [Thompson et al., (2025)](). We are not able to publicly share the raw community data but provided teh summarized richness values
+*```BLANK.rds```:
+
 
 ### Propagule pressure - recreational fishing demand
 TALK ABOUT SOURCE
