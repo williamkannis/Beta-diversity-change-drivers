@@ -138,8 +138,28 @@ Raw trait data obtained from publicly available datasets and upon request should
 ## Raw observed and null data
 
 ### Observed values
+DESCRIPTION. Data can be downloaded from [Zenodo repository]() and placed in ```HPC_data/obs_outputs/``` directory.
+
+**Observed beta diverstiy data**:
+
+```his_fun_beta_obs.rds``` ```his_phy_beta_obs.rds``` ```his_tax_beta_obs.rds``` ```mod_fun_beta_obs.rds``` ```mod_phy_beta_obs.rds```
+```mod_tax_beta_obs.rds```
+
+Files contain lists of pairwise beta diversity distance objects and local contribution to beta diversity (LCBD) data frames. Files contain values for the contemporary (mod) and native (his) species pools, and taxonomic (tax) functional (fun), and phylogenetic (phy) diversity facets. All files have the following structure:
+* ```$beta```: list of 3 containing Sorensen pairwise beta diversity distance objects
+    * ```$Btotal```: distance object of total beta diversity
+    * ```$Brepl```: replacement beta diversity component
+    *  ```$Brich```: richness difference beta diversity component
+*  ```$LCBD```: Data frame of 3 columns containing LCBD values. Column names are specific to diveristy facets and these differences are denoted with *X*:
+    * ```X_Btotal```: LCBD of total beta diversity in facet *X*
+    * ```X_Brepl```: LCBD of replacement component in facet *X*
+    * ```X_Brich```: LCBD of richness difference component in facet *X*
+
+**Observed alpha diverity data**:
 
 ### Null iterations
+
+### SES Input
 
 ## Diversity Output Data
 DESCRIPTION. Data can be downloaded from [Zenodo repository]() and placed in ```Diversity Output Data/``` directory.
@@ -170,14 +190,30 @@ DESCRIPTION. Data can be downloaded from [Zenodo repository]() and placed in ```
     * ```phy_his_alpha_es```: Empirical effect size of ```phy_his_alpha```
 
 
-
-## RDA data
-
-### predictor data
-*
-*
+## Analysis data
+OVERVIEW DESCRIPTION. TALK ABOUT HOW RESPONSE DATA IS IN PREVIOUS STEP
 
 ### Spatial data
+WHERE TO FIND HUC SHAPEFILES
+
+### Origin-based invadedness
+*
+*
+
+### Propagule pressure - recreational fishing demand
+TALK ABOUT SOURCE
+
+### Abiotic habitat charactersitics 
+TALK ABOUT STREAMCAT FUNCTION
+
+### Abiotic habitat alteration - HAI
+TALK ABOUT WHERE TO DOWNLOAD
+
+
+### BIOTIC FACTORS
+TALK ABOUT WHERE SPECIE RICHNESS AND EFFECT SIZES ARE FOUND
+
+
 
 
 
