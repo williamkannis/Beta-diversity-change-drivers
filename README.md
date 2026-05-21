@@ -138,7 +138,7 @@ Raw trait data obtained from publicly available datasets and upon request should
 ## Observed diversity data
 DESCRIPTION. Data can be downloaded from [Zenodo repository]() and placed in ```HPC_data/obs_outputs/``` directory.
 
-### Observed beta diverstiy data**:
+### Observed beta diverstiy data
 ```his_fun_beta_obs.rds``` ```his_phy_beta_obs.rds``` ```his_tax_beta_obs.rds``` ```mod_fun_beta_obs.rds``` ```mod_phy_beta_obs.rds```
 ```mod_tax_beta_obs.rds```
 
@@ -152,7 +152,7 @@ Files contain lists of pairwise beta diversity distance objects and local contri
     * ```X_Brepl```: LCBD of replacement component in facet *X*
     * ```X_Brich```: LCBD of richness difference component in facet *X*
 
-### Observed alpha diverity data**:
+### Observed alpha diverity data
 
 ## Null iterations
 
