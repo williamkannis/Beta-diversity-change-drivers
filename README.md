@@ -139,9 +139,10 @@ Raw trait data obtained from publicly available datasets and upon request should
 * ```trait_data_prep.R```: Compile trait data for all 449 fish. This script uses trait data from two trait databases and fills in missing trait values based on phylogenetic relationships and literature review. The output of this script was used to calculate functional beta diversity. <ins>NOTE:</ins> Running this script requires users to download the publicly available data set from [Frimpong & Angermeier (2009)](https://www.sciencebase.gov/catalog/item/5a7c6e8ce4b00f54eb2318c0) and request the database from [Giam & Olden (2016)](https://doi.org/10.1111/geb.12475).
 
 ## Observed diversity data
-DESCRIPTION. Data can be downloaded from ```obs_outputs.zip``` at the [Zenodo repository]() and unzipped into ```HPC_data/``` directory.
+Observed alpha and beta diversity data can be downloaded from ```obs_outputs.zip``` at the [Zenodo repository]() and unzipped into ```HPC_data/``` directory. These data 
+used to estimate null model empirical effect sizes, used in analyses, and used for summary statistics.
 
-### Observed beta diverstiy data
+### Observed beta diversity data
 ```his_fun_beta_obs.rds``` ```his_phy_beta_obs.rds``` ```his_tax_beta_obs.rds``` ```mod_fun_beta_obs.rds``` ```mod_phy_beta_obs.rds```
 ```mod_tax_beta_obs.rds```
 
@@ -150,16 +151,16 @@ Files contain lists of pairwise beta diversity distance objects and local contri
     * ```$Btotal```: distance object of total beta diversity
     * ```$Brepl```: replacement beta diversity component
     *  ```$Brich```: richness difference beta diversity component
-*  ```$LCBD```: Data frame of 3 columns containing LCBD values. Column names are specific to diveristy facets and these differences are denoted with *X*:
+*  ```$LCBD```: Data frame of 3 columns containing LCBD values. Column names are specific to diveristy facets, and these differences are denoted with *X*:
     * ```X_Btotal```: LCBD of total beta diversity in facet *X*
     * ```X_Brepl```: LCBD of replacement component in facet *X*
     * ```X_Brich```: LCBD of richness difference component in facet *X*
 
-### Observed alpha diverity data
+### Observed alpha diversity data
 
 ```his_fun_alpha_obs.rds``` ```his_phy_alpha_obs```
 
-Files contain named numeric objects with observed functional richness (volume of kernel density hypervolumne) or phylongetic richness (number of branches in phylogentic tree). Names refer to COMID identifiers for each stream segment via the [National Hydrography Dataset Plus version 2](https://www.epa.gov/waterdata/get-nhdplus-national-hydrography-dataset-plus-data#Download)
+Files contain named numeric objects with observed functional richness (volume of kernel density hypervolume) or phylogenetic richness (number of branches in phylogenetic tree). Names refer to COMID identifiers for each stream segment via the [National Hydrography Dataset Plus version 2](https://www.epa.gov/waterdata/get-nhdplus-national-hydrography-dataset-plus-data#Download)
 
 ## Null iterations
 
