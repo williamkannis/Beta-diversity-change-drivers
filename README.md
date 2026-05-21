@@ -1,5 +1,4 @@
 # Source code for *Drivers of multifaceted beta diversity change in invaded stream fish communities*
-MAYBE INCLUDE TAXONOMIC NULL MODELS BUT SAT THEY WERE NOT USED FOR THIS ANALYSIS
 ## Contact information and citation
 
 ```bash
