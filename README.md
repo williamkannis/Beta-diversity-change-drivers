@@ -164,11 +164,34 @@ Files contain named numeric objects with observed functional richness (volume of
 
 ## Null iterations
 
-## SES Input
+## Summarized null model outputs
+The summarized null model analyses results for all diveristy metrics an be downloaded from ```BLANK.zip``` at the [Zenodo repository]() and unzipped into the ```HPC_data/``` directory. These data are used to evualate the properties of the null distributions to choose between standarized effect sizes and empirical effect sizes, and are merged togehter for plotting and to create the final dataframes for the use in analyses.
+
+Every diversity metric has its own file named based on the diversity facet (taxonomic = tax; functional = fun; phylogenetic = phy), species pool (contemporary = mod;native = his), and diverstiy metric (Btotal = total beta diversity; Brepl = replacement component; Bric = richness difference component; local contributon to beta diversity = LCBD; alpha = alpha diversity). 
+
+*facet*_*pool*_*metric*_ses_out.rds
+
+
+All files contain a list with the following structure:
+* ```$obs```:
+* ```$null_mean```:
+* ```$null_sd```:
+* ```$ses```:
+* ```$empirical_pvalue```:
+* ```$empirical_es```:
+* ```$skew```:
+* ```$kurt```:
+
+The strucuture of the values in each list item are dependent on diversitt metric: 
+* beta diversity components (Btotal, Brepl, and Brich): distance objects,
+* LCBD: data frame with rows for each site and a column for LCBD of Btotal, Brepl, and Bric 
+* alpha: named numeric objects. 
+
 
 ## Diversity Output Data
-DESCRIPTION. Data can be downloaded from ```Diversity Output Data.zip``` at the [Zenodo repository]() and unzipped into the working directory.
-* ```delta_lcbd.rds```: Observed and null model empirical p-value based effect sizes (ES) of taxonomic (no ES), functional and phylogenetic changes in local contributions to beta diversity (LCBD) between the contemporary and native species pools. Data frame consisting of the following columns:
+The combined observed and summarized effect size data for native alpha, native LCBD, and delta LCBD can be downloaded from ```Diversity Output Data.zip``` at the [Zenodo repository]() and unzipped into the working directory. These data can be used to replicate the spatial, redundancy, and variance partitioning analyses.
+
+* ```delta_lcbd.rds```: Observed and null model empirical p-value based effect sizes (ES) of taxonomic (no ES), functional and phylogenetic changes in local contributions to beta diversity (LCBD) between the contemporary and native species pools. These data are used as the response variables for the manuscript's main analyses. Data frame consisting of the following columns:
    * ```COMID```: Unique identifier for each stream segment via the [National Hydrography Dataset Plus version 2](https://www.epa.gov/waterdata/get-nhdplus-national-hydrography-dataset-plus-data#Download)
     * ```fun_Btotal```: Change in functional LCBD of total beta diversity
     * ```fun_Brepl```: Change in functional LCBD of the replacement component
@@ -185,9 +208,8 @@ DESCRIPTION. Data can be downloaded from ```Diversity Output Data.zip``` at the 
     * ```phy_Btotal_es```: Empirical effect size of change in ```phy_Btotal```
     * ```phy_Brepl_es```: Empirical effect size of change in ```phy_Brepl```
     * ```phy_Brich_es```: Empirical effect size of change in ```phy_Brich```
-* ```native_lcbd```: Observed and ES values of taxonomic (no ES), functional, and phylogenetic local contributions to beta diversity (LCBD) for the native species pool. Data frame consisting of the same structure as ```delta_lcbd.rds```, but LCBD values are for the native species, not a change over time.
-   
-* ```native_alpha.rds```: Observed and ES values of functional and phylogenetic richness for the native species pool. Data frame consisting of the following columns:
+* ```native_lcbd```: Observed and ES values of taxonomic (no ES), functional, and phylogenetic local contributions to beta diversity (LCBD) for the native species pool. These data are used as explanatory variables in main analyses. Data frame consisting of the same structure as ```delta_lcbd.rds```, but LCBD values are for the native species, not a change over time.
+* ```native_alpha.rds```: Observed and ES values of functional and phylogenetic richness for the native species pool. These data are used as explanatory variables in main analyses. Data frame consisting of the following columns:
     * ```COMID```: Unique identifier for each stream segment.
     * ```fun_his_alpha```: Functional richness measured as the volume of kernel density hypervolumes.
     * ```phy_his_alpha```: Phylogenetic richness measured as the number of phylogenetic tree branches.
