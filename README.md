@@ -14,10 +14,19 @@ Cite as:
 ## Analysis work flow
 Here, we provide code and a general workflow for calculating null model standardized alpha diversity, beta diversity, and LCBD values. Standardized effect sizes (SES) are calculated for two species pools (contemporary and native only), as well as for the change in diversity between species pools. See the manuscript for more detailed methodology and justification. This workflow is designed to run using R on local machines with the more intensive calculations ran using high performance computing clusters via the slurm interface and shell scripts. R and shell scripts are numbered in order of workflow.  Scripts 1-14 are coded to be general so that users can calculate SES using their own diversity values. We used this framework to create the diversity values used the analyses in this manuscript. Scripts 15-17 are less general and are provided with the goal of transparency and result replication. We provided both raw and formatted null model data to replicate analyses from Script 11 onward. We are unable to directly provide the raw community or trait data that facilitate replication of scripts 1-10, but provide additional code and workflow information regarding the filtering and formatting of the diversity input data (i.e., community, trait, phylogeny). The final phylogenetic tree, and information for accessing community and trait data can be found [here](#diversity-input-data).
 
-### Required R packages
-* R version:
+### Required Software
+R version:
+
+**Key R packages for null model workflow**
 * ```'BAT'``` version:
-* ```'dplyr'``` version: 
+* ```'dplyr'``` version:
+
+**Key R packages for mansucript analysis replication
+* ```'vegan'``` version:
+
+**Key R packages for Diveristy input prep**
+* ```‘fishtree’``` version:
+* 
 
 ### Create file directories
 First, download the ```Scripts``` folder (all users) and all data from [Zenodo Repository]() (users replicating results). Next, users will need to create the below file directory to store diversity input data (e.g. community, trait, phylogeny), formatted high performance computation input data, and the resulting diversity outputs.
