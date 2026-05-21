@@ -143,31 +143,33 @@ Raw trait data obtained from publicly available datasets and upon request should
 
 ## Diversity Output Data
 DESCRIPTION. Data can be downloaded from [Zenodo repository]() and placed in ```Diversity Output Data/``` directory.
-* ```delta_lcbd.rds```:
-* ```native_alpha.rds```: Observed and null model empricial p-value based effect sizes (ES) of functional and phylogenetic richness for the native species pool. Dataframe consisting of the following columns:
-    * ```COMID```: Unique identifier for each stream segment via the [National Hydrography Dataset Plus version 2](https://www.epa.gov/waterdata/get-nhdplus-national-hydrography-dataset-plus-data#Download)
-    * ```fun_his_alpha```: Functional richness measured as the volumne of kernel density hypervolumes.
-    * ```phy_his_alpha```: Phylogenetic richness measured as the number of phylogentic tree branches.
-    * ```fun_his_alpha_es```: Empirical effect size of functional richness
-    * ```phy_his_alpha_es```: Empirical effect size of phylogentic richness
+* ```delta_lcbd.rds```: Observed and null model empirical p-value based effect sizes (ES) of taxonomic (no ES), functional and phylogenetic changes in local contributions to beta diversity (LCBD) between the contemporary and native species pools. Data frame consisting of the following columns:
+   * ```COMID```: Unique identifier for each stream segment via the [National Hydrography Dataset Plus version 2](https://www.epa.gov/waterdata/get-nhdplus-national-hydrography-dataset-plus-data#Download)
+    * ```fun_Btotal```: Change in functional LCBD of total beta diversity
+    * ```fun_Brepl```: Change in functional LCBD of the replacement component
+    * ```fun_Brich```: Change in functional LCBD of the richness difference component
+    * ```phy_Btotal```: Change in phylogenetic LCBD of total beta diversity
+    * ```phy_Brepl```: Change in phylogenetic LCBD of the replacement component
+    * ```phy_Brich```: Change in phylogenetic LCBD of the richness difference component
+    * ```tax_Btotal```: Change in taxonomic LCBD of total beta diversity
+    * ```tax_Brepl```: Change in taxonomic LCBD of the replacement component
+    * ```tax_Brich```: Change in taxonomic LCBD of the richness difference component
+    * ```fun_Btotal_es```: Empirical effect size of change in ```fun_Btotal```
+    * ```fun_Brepl_es```: Empirical effect size of change in ```fun_Brepl```
+    * ```fun_Brich_es```: Empirical effect size of change in ```fun_Btotal```
+    * ```phy_Btotal_es```: Empirical effect size of change in ```phy_Btotal```
+    * ```phy_Brepl_es```: Empirical effect size of change in ```phy_Brepl```
+    * ```phy_Brich_es```: Empirical effect size of change in ```phy_Brich```
+* ```native_lcbd```: Observed and ES values of taxonomic (no ES), functional, and phylogenetic local contributions to beta diversity (LCBD) for the native species pool. Data frame consisting of the same structure as ```delta_lcbd.rds```, but LCBD values are for the native species, not a change over time.
+   
+* ```native_alpha.rds```: Observed and ES values of functional and phylogenetic richness for the native species pool. Data frame consisting of the following columns:
+    * ```COMID```: Unique identifier for each stream segment.
+    * ```fun_his_alpha```: Functional richness measured as the volume of kernel density hypervolumes.
+    * ```phy_his_alpha```: Phylogenetic richness measured as the number of phylogenetic tree branches.
+    * ```fun_his_alpha_es```: Empirical effect size of ```fun_his_alpha```
+    * ```phy_his_alpha_es```: Empirical effect size of ```phy_his_alpha```
 
-* ```native_lcbd```: Observed and null model empricial p-value based effect sizes (ES) of functional and phylogenetic local contributions to beta diversity (LCBD) for the native species pool. Dataframe consisting of the following columns:
-    * ```COMID```: Unique identifier for each stream segment via the [National Hydrography Dataset Plus version 2](https://www.epa.gov/waterdata/get-nhdplus-national-hydrography-dataset-plus-data#Download)
-    * ```fun_Btotal```:
-    * ```fun_Brepl```:
-    * ```fun_Brich```:
-    * ```phy_Btotal```:
-    * ```phy_Brepl```:
-    * ```phy_Brich```:
-    * ```tax_Btotal```:
-    * ```tax_Brepl```:
-    * ```tax_Brich```:
-    * ```fun_Btotal_es```:
-    * ```fun_Brepl_es```:
-    * ```fun_Brich_es```:
-    * ```phy_Btotal_es```:
-    * ```phy_Brepl_es```:
-    * ```phy_Brich_es```:
+
 
 ## RDA data
 
