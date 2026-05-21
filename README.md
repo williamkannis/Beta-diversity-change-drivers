@@ -134,14 +134,11 @@ Harmonized community data is avalable upon request after written approval from e
 ### Trait data
 Raw trait data obtained from publicly available datasets and upon request should be stored ```Diversity Input Data/```.
 * ```trait_data_prep.R```: Compile trait data for all 449 fish. This script uses trait data from two trait databases and fills in missing trait values based on phylogenetic relationships and literature review. The output of this script was used to calculate functional beta diversity. <ins>NOTE:</ins> Running this script requires users to download the publicly available data set from [Frimpong & Angermeier (2009)](https://www.sciencebase.gov/catalog/item/5a7c6e8ce4b00f54eb2318c0) and request the database from [Giam & Olden (2016)](https://doi.org/10.1111/geb.12475).
-  
-## Raw observed and null data
 
-### Observed values
+## Observed diversity data
 DESCRIPTION. Data can be downloaded from [Zenodo repository]() and placed in ```HPC_data/obs_outputs/``` directory.
 
-**Observed beta diverstiy data**:
-
+### Observed beta diverstiy data**:
 ```his_fun_beta_obs.rds``` ```his_phy_beta_obs.rds``` ```his_tax_beta_obs.rds``` ```mod_fun_beta_obs.rds``` ```mod_phy_beta_obs.rds```
 ```mod_tax_beta_obs.rds```
 
@@ -155,11 +152,11 @@ Files contain lists of pairwise beta diversity distance objects and local contri
     * ```X_Brepl```: LCBD of replacement component in facet *X*
     * ```X_Brich```: LCBD of richness difference component in facet *X*
 
-**Observed alpha diverity data**:
+### Observed alpha diverity data**:
 
-### Null iterations
+## Null iterations
 
-### SES Input
+## SES Input
 
 ## Diversity Output Data
 DESCRIPTION. Data can be downloaded from [Zenodo repository]() and placed in ```Diversity Output Data/``` directory.
