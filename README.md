@@ -242,7 +242,7 @@ We mapped the spatial distribution of changes in LCBD by aggregating data to the
 
 
 ### Origin-based invadedness
-We estimated the effects community invadedness by nonnative species of differnt geographic orgins on changes in LCBD. We used the raw community data estimated total species richness, native species richness, and the richness of three classes of nonnative species using origin-base defintions intoduced by [Thompson et al., (2025)](). We are not able to publicly share the raw community data but provided teh summarized richness values
+We estimated the effects community invadedness by nonnative species of differnt geographic orgins on changes in LCBD. We used the raw community data estimated total species richness, native species richness, and the richness of three classes of nonnative species using origin-base defintions intoduced by [Thompson et al., (2025)](https://doi.org/10.1111/geb.13951). We are not able to publicly share the raw community data but provided teh summarized richness values
 *```BLANK.rds```:
 
 
