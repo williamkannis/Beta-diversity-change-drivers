@@ -116,10 +116,10 @@ Batch SES processing results in a single file for each diversity metric. The fol
 
 ### Redundancy analaysis - perform on local machine
 The below script prepares the explanatory variables for used in redundancy analysis (RDA) of multidimensional changes in LCBD. The script loads in data for nonnative origin based invadedness, propagule pressure, abiotic habitat characteristics, habitat alteration, and native alpha diversity and LCBD. We make all data for explanatory variable available or explain how to access the data. See [BLANK]() for more information.
-* ```15_```
+* ```15_rda_predictor_prep.R```
 
 The below script conducts forward selection, redundancy analysis, and variance partition for both raw (observed) and null model standardized (ES) change in LCBD values. Script also contains code to export tables and plots for analyses.
-* ```16_```
+* ```16_rda_varpart.R```
 
 ### Spatial plotting - perform on local machine
 
