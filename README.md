@@ -135,14 +135,39 @@ Harmonized community data is avalable upon request after written approval from e
 Raw trait data obtained from publicly available datasets and upon request should be stored ```Diversity Input Data/```.
 * ```trait_data_prep.R```: Compile trait data for all 449 fish. This script uses trait data from two trait databases and fills in missing trait values based on phylogenetic relationships and literature review. The output of this script was used to calculate functional beta diversity. <ins>NOTE:</ins> Running this script requires users to download the publicly available data set from [Frimpong & Angermeier (2009)](https://www.sciencebase.gov/catalog/item/5a7c6e8ce4b00f54eb2318c0) and request the database from [Giam & Olden (2016)](https://doi.org/10.1111/geb.12475).
   
-
-## Diversity Output Data
+## Raw observed and null data
 
 ### Observed values
 
 ### Null iterations
 
-### SUmmarized
+## Diversity Output Data
+DESCRIPTION. Data can be downloaded from [Zenodo repository]() and placed in ```Diversity Output Data/``` directory.
+* ```delta_lcbd.rds```:
+* ```native_alpha.rds```: Observed and null model empricial p-value based effect sizes (ES) of functional and phylogenetic richness for the native species pool. Dataframe consisting of the following columns:
+    * ```COMID```: Unique identifier for each stream segment via the [National Hydrography Dataset Plus version 2](https://www.epa.gov/waterdata/get-nhdplus-national-hydrography-dataset-plus-data#Download)
+    * ```fun_his_alpha```: Functional richness measured as the volumne of kernel density hypervolumes.
+    * ```phy_his_alpha```: Phylogenetic richness measured as the number of phylogentic tree branches.
+    * ```fun_his_alpha_es```: Empirical effect size of functional richness
+    * ```phy_his_alpha_es```: Empirical effect size of phylogentic richness
+
+* ```native_lcbd```: Observed and null model empricial p-value based effect sizes (ES) of functional and phylogenetic local contributions to beta diversity (LCBD) for the native species pool. Dataframe consisting of the following columns:
+    * ```COMID```: Unique identifier for each stream segment via the [National Hydrography Dataset Plus version 2](https://www.epa.gov/waterdata/get-nhdplus-national-hydrography-dataset-plus-data#Download)
+    * ```fun_Btotal```:
+    * ```fun_Brepl```:
+    * ```fun_Brich```:
+    * ```phy_Btotal```:
+    * ```phy_Brepl```:
+    * ```phy_Brich```:
+    * ```tax_Btotal```:
+    * ```tax_Brepl```:
+    * ```tax_Brich```:
+    * ```fun_Btotal_es```:
+    * ```fun_Brepl_es```:
+    * ```fun_Brich_es```:
+    * ```phy_Btotal_es```:
+    * ```phy_Brepl_es```:
+    * ```phy_Brich_es```:
 
 ## RDA data
 
