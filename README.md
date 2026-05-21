@@ -20,26 +20,29 @@ Here, we provide code and a general workflow for calculating null model standard
 * ```'dplyr'``` version: 
 
 ### Create file directories
-To store to store diversity input data (e.g. community, trait, phylogeny), formatted high performance computation input data, and the resulting diversity outputs, users will need to create the below file directory. 
+First, download the ```Scripts``` folder (all users) and all data from [Zenodo Repository]() (users replicating results). Next, users will need to create the below file directory to store diversity input data (e.g. community, trait, phylogeny), formatted high performance computation input data, and the resulting diversity outputs.
 
 ```bash
+├── Scripts
 ├── Diversity Input Data
 │   ├── mod_com_diversity_input.rds
 │   ├── his_com_diversity_input.rds
 │   ├── trait_diversity_input.rds
 │   ├── phylo_tree.rds
 ├── HPC_data
-    ├── beta_null_input_data
-    │   ├── fun
-    │   ├── phy
-    ├── alpha_null_input
-    │   ├── fun
-    │   ├── phy
-    │── beta_obs_input_data
-    │── null_out
-    │── obs_out
-    │── ses_inputs
-    └── ses_outputs
+│   ├── beta_null_input_data
+│   │   ├── fun
+│   │   ├── phy
+│   ├── alpha_null_input
+│   │   ├── fun
+│   │   ├── phy
+│   │── beta_obs_input_data
+│   │── null_out
+│   │── obs_out
+│   │── ses_inputs
+│   └── ses_outputs
+├── Diversity Output Data
+└── 
 ```
 Place community data for both species pools (contemporary and native), trait data, and phylongetic trees in ```Diversity Input Data``` with the following names: 
 * ```mod_com_diversity_input.rds```: Community data for contemporary species pool. Dataframe or matrix with rows for sites and columns for species. Can contain an optional column ```HUC_12``` which represent regions and can be used to define regional species pools.
@@ -47,9 +50,9 @@ Place community data for both species pools (contemporary and native), trait dat
 * ```trait_diversity_input.rds```: Trait data for all species in community data. Dataframe or matrix with rows for species and columns for traits.
 * ```phylo_tree.rds```: Phylogenetic tree for all species in community data
 
-Leave ```HPC_data``` folders empty, outputs from subsequent scripts will populate these folders
-
 <ins>NOTE:</ins> We cannot provide raw community or trait data used in the manuscript without completed data requests, but we do provide the phylogenetic tree and scripts used to format and filter the trait and community data. See [Diversity Input Data](#diversity-input-data) for more information
+
+<ins>NOTE:</ins> If replicating the results of analysis (Script XX onward) by downloading data from the [Zenodo respository](), the .zip files will create duplicate folders. It is recommended to download all data before creating new file structures.
 
 ### Prepare input data - perform on local machine
 To best take advantage of high performance computation, we need to format our data in a manner that allows for parallel processing of diversity metrics. As we need to estimate 999 null iterations of each diversity metric and species pool (native only and contemporary), we want to prepare input data that can run simultaneously. For beta diversity null models, we need to generate 999 shuffled trait matrices and phylogenetic trees. For native alpha diversity, we need to generate 999 random community matrices. A benefit to HPC is that processes can be ran on a high number of cores among multiple computer nodes. To take advantage of HPC, we need to divide the list of null traits, trees, and/or communities into chunks based on CPU and memory limits per each node. These chunk can be ran on separate computer nodes. This reduces memory requirements within nodes and allows for better queue times. 
@@ -136,7 +139,7 @@ Raw trait data obtained from publicly available datasets and upon request should
 * ```trait_data_prep.R```: Compile trait data for all 449 fish. This script uses trait data from two trait databases and fills in missing trait values based on phylogenetic relationships and literature review. The output of this script was used to calculate functional beta diversity. <ins>NOTE:</ins> Running this script requires users to download the publicly available data set from [Frimpong & Angermeier (2009)](https://www.sciencebase.gov/catalog/item/5a7c6e8ce4b00f54eb2318c0) and request the database from [Giam & Olden (2016)](https://doi.org/10.1111/geb.12475).
 
 ## Observed diversity data
-DESCRIPTION. Data can be downloaded from [Zenodo repository]() and placed in ```HPC_data/obs_outputs/``` directory.
+DESCRIPTION. Data can be downloaded from ```obs_outputs.zip``` at the [Zenodo repository]() and unzipped into ```HPC_data/``` directory.
 
 ### Observed beta diverstiy data
 ```his_fun_beta_obs.rds``` ```his_phy_beta_obs.rds``` ```his_tax_beta_obs.rds``` ```mod_fun_beta_obs.rds``` ```mod_phy_beta_obs.rds```
@@ -154,12 +157,16 @@ Files contain lists of pairwise beta diversity distance objects and local contri
 
 ### Observed alpha diverity data
 
+```his_fun_alpha_obs.rds``` ```his_phy_alpha_obs```
+
+Files contain named numeric objects with observed functional richness (volume of kernel density hypervolumne) or phylongetic richness (number of branches in phylogentic tree). Names refer to COMID identifiers for each stream segment via the [National Hydrography Dataset Plus version 2](https://www.epa.gov/waterdata/get-nhdplus-national-hydrography-dataset-plus-data#Download)
+
 ## Null iterations
 
 ## SES Input
 
 ## Diversity Output Data
-DESCRIPTION. Data can be downloaded from [Zenodo repository]() and placed in ```Diversity Output Data/``` directory.
+DESCRIPTION. Data can be downloaded from ```Diversity Output Data.zip``` at the [Zenodo repository]() and unzipped into the working directory.
 * ```delta_lcbd.rds```: Observed and null model empirical p-value based effect sizes (ES) of taxonomic (no ES), functional and phylogenetic changes in local contributions to beta diversity (LCBD) between the contemporary and native species pools. Data frame consisting of the following columns:
    * ```COMID```: Unique identifier for each stream segment via the [National Hydrography Dataset Plus version 2](https://www.epa.gov/waterdata/get-nhdplus-national-hydrography-dataset-plus-data#Download)
     * ```fun_Btotal```: Change in functional LCBD of total beta diversity
