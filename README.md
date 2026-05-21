@@ -12,7 +12,7 @@ Cite as:
 > CITE
 
 ## Analysis work flow
-Here, we provide code and a general workflow for calculating null model standardized alpha diversity, beta diversity, and LCBD values. Standardized effect sizes (SES) are calculated for two species pools (contemporary and native only), as well as for the change in diversity between species pools. See the manuscript for more detailed methodology and justification. This workflow is designed to run using R on local machines with the more intensive calculations ran using high performance computing clusters via the slurm interface and shell scripts. R and shell scripts are numbered in order of workflow.  Scripts 1-14 are coded to be general so that users can calculate SES using their own diversity values. We used this framework to create the diversity values used the analyses in this manuscript. Scripts 15-17 are less general and are provided with the goal of transparency and result replication. We provided both raw and formatted null model data to replicate analyses from Script XX onward. We are unable to directly provide the raw community or trait data that facilitate replication of scripts 1-XX, but provide additional code and workflow information regarding the filtering and formatting of the diversity input data (i.e., community, trait, phylogeny). The final phylogenetic tree, and information for accessing community and trait data can be found [here](#diversity-input-data).
+Here, we provide code and a general workflow for calculating null model standardized alpha diversity, beta diversity, and LCBD values. Standardized effect sizes (SES) are calculated for two species pools (contemporary and native only), as well as for the change in diversity between species pools. See the manuscript for more detailed methodology and justification. This workflow is designed to run using R on local machines with the more intensive calculations ran using high performance computing clusters via the slurm interface and shell scripts. R and shell scripts are numbered in order of workflow.  Scripts 1-14 are coded to be general so that users can calculate SES using their own diversity values. We used this framework to create the diversity values used the analyses in this manuscript. Scripts 15-17 are less general and are provided with the goal of transparency and result replication. We provided both raw and formatted null model data to replicate analyses from Script 11 onward. We are unable to directly provide the raw community or trait data that facilitate replication of scripts 1-10, but provide additional code and workflow information regarding the filtering and formatting of the diversity input data (i.e., community, trait, phylogeny). The final phylogenetic tree, and information for accessing community and trait data can be found [here](#diversity-input-data).
 
 ### Required R packages
 * R version:
@@ -52,7 +52,7 @@ Place community data for both species pools (contemporary and native), trait dat
 
 <ins>NOTE:</ins> We cannot provide raw community or trait data used in the manuscript without completed data requests, but we do provide the phylogenetic tree and scripts used to format and filter the trait and community data. See [Diversity Input Data](#diversity-input-data) for more information
 
-<ins>NOTE:</ins> If replicating the results of analysis (Script XX onward) by downloading data from the [Zenodo respository](), the .zip files will create duplicate folders. It is recommended to download all data before creating new file structures.
+<ins>NOTE:</ins> If replicating the results of analysis (Script 11 onward) by downloading data from the [Zenodo respository](), the .zip files will create duplicate folders. It is recommended to download all data before creating new file structures.
 
 ### Prepare input data - perform on local machine
 To best take advantage of high performance computation, we need to format our data in a manner that allows for parallel processing of diversity metrics. As we need to estimate 999 null iterations of each diversity metric and species pool (native only and contemporary), we want to prepare input data that can run simultaneously. For beta diversity null models, we need to generate 999 shuffled trait matrices and phylogenetic trees. For native alpha diversity, we need to generate 999 random community matrices. A benefit to HPC is that processes can be ran on a high number of cores among multiple computer nodes. To take advantage of HPC, we need to divide the list of null traits, trees, and/or communities into chunks based on CPU and memory limits per each node. These chunk can be ran on separate computer nodes. This reduces memory requirements within nodes and allows for better queue times. 
@@ -163,12 +163,23 @@ Files contain lists of pairwise beta diversity distance objects and local contri
 Files contain named numeric objects with observed functional richness (volume of kernel density hypervolume) or phylogenetic richness (number of branches in phylogenetic tree). Names refer to COMID identifiers for each stream segment via the [National Hydrography Dataset Plus version 2](https://www.epa.gov/waterdata/get-nhdplus-national-hydrography-dataset-plus-data#Download)
 
 ## Null iterations
+The raw null model iteration data for beta and alpha diversity can be downloaded from ```null_out.zip``` at the [Zenodo repository]() and unzipped into the ```HPC_data/``` directory. These data are the result of the randomization of traits and phylogenies (beta) or randomization of communities (alpha). These data will be compiled and used to create null distributions used to create null model standardized diversity values.
 
+Null model iterations are divided into separate files for alpha and beta diversity based on diversity facet. Within diversity facets, iterations are broken into chucks based on the number of HPC nodes were used to create the data. The null model files are named in the following format
+> *pool*\_*facet*\_*metric*\_null\_*iteration*.rds
+* *pool*: species pool (contemporary = mod; native = his)
+* *facet*: diversity facet (taxonomic = tax; functional = fun; phylogenetic = phy)
+* *metric*: alpha or beta diversity
+* *iteration*: range of iterations included in file. e.g., 001-002
+
+All files contain a list with items for each null iteration. Each beta diversity iteration contains a list with the same structure as [observed beta diversity](#observed-beta-diversity-data) and each alpha diversity iteration contains a named numeric object with the same structure as [observed alpha diversity](#observed-alpha-diversity-data).
+
+   
 ## Summarized null model outputs
 The summarized null model analyses results for all diversity metrics can be downloaded from ```BLANK.zip``` at the [Zenodo repository]() and unzipped into the ```HPC_data/``` directory. These data are used to evaluate the properties of the null distributions to choose between standardized effect sizes and empirical effect sizes, and can be merged together for plotting and to create the final dataframes for the use in analyses.
 
 Each diversity metric has its own file name in the following format:
-> *facet* _ *pool* _ *metric* _ses_out.rds
+> *facet*\_*pool*\_*metric*\_ses_out.rds
 * *facet*: diversity facet (taxonomic = tax; functional = fun; phylogenetic = phy)
 * *pool*: species pool (contemporary = mod; native = his)
 * *metric*: diversity metric (Btotal = total beta diversity; Brepl = replacement component; Bric = richness difference component; local contribution to beta diversity = LCBD; alpha = alpha diversity)
