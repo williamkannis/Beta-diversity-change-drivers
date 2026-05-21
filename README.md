@@ -14,6 +14,11 @@ Cite as:
 ## Analysis work flow
 Here, we provide code and a general workflow for calculating null model standardized alpha diversity, beta diversity, and LCBD values. Standardized effect sizes (SES) are calculated for two species pools (contemporary and native only), as well as for the change in diversity between species pools. See the manuscript for more detailed methodology and justification. This workflow is designed to run using R on local machines with the more intensive calculations ran using high performance computing clusters via the slurm interface and shell scripts. R and shell scripts are numbered in order of workflow.  Scripts 1-14 are coded to be general so that users can calculate SES using their own diversity values. We used this framework to create the diversity values used the analyses in this manuscript. Scripts 15-17 are less general and are provided with the goal of transparency and result replication. We provided both raw and formatted null model data to replicate analyses from Script XX onward. We are unable to directly provide the raw community or trait data that facilitate replication of scripts 1-XX, but provide additional code and workflow information regarding the filtering and formatting of the diversity input data (i.e., community, trait, phylogeny). The final phylogenetic tree, and information for accessing community and trait data can be found [here](#diversity-input-data).
 
+### Required R packages
+* R version:
+* ```'BAT'``` version:
+* ```'dplyr'``` version: 
+
 ### Create file directories
 To store to store diversity input data (e.g. community, trait, phylogeny), formatted high performance computation input data, and the resulting diversity outputs, users will need to create the below file directory. 
 
@@ -111,7 +116,6 @@ The below script conducts forward selection, redundancy analysis, and variance p
 * ```null_model_algorithms.R```: Contains algorithms to randomize community, trait, or phylogenetic data for null model analysis
 * ```diversity_batch_functions.R```: Contains functions that estimate multiple iterations of diversity metrics using parallel computation.
 * ```effect_size_function.R```:
-
 
 ## Diversity Input Data
 We are not able to publicly provide all the data necessary to replicate the multidimensional diversity data. The fish occurrence data used to estimate multidimensional diversity metrics were obtained through data sharing agreements with United States governmental agencies. While these raw data are not directly available from the authors for redistribution due to data sharing agreements, they can be accessed through formal requests to the agencies listed in Appendix 1. Individuals with completed data requests may contact the corresponding author for harmonized versions of the data. Phylogenetic data was obtained from a variety of publicly available datasets with citations found in Appendix 3. We provided a harmonized phylogenetic tree that contains all species in our community dataset. Trait data were obtained from public and private datasets and harmonized data cannot be shared without permission. Despite not being able to share all data, we provide R scripts used to harmonize the community, phylogenetic, and trait data used to estimate the multidimensional alpha and beta diversity values, which we do make publicly available.
