@@ -165,27 +165,29 @@ Files contain named numeric objects with observed functional richness (volume of
 ## Null iterations
 
 ## Summarized null model outputs
-The summarized null model analyses results for all diveristy metrics an be downloaded from ```BLANK.zip``` at the [Zenodo repository]() and unzipped into the ```HPC_data/``` directory. These data are used to evualate the properties of the null distributions to choose between standarized effect sizes and empirical effect sizes, and are merged togehter for plotting and to create the final dataframes for the use in analyses.
+The summarized null model analyses results for all diversity metrics can be downloaded from ```BLANK.zip``` at the [Zenodo repository]() and unzipped into the ```HPC_data/``` directory. These data are used to evaluate the properties of the null distributions to choose between standardized effect sizes and empirical effect sizes, and can be merged together for plotting and to create the final dataframes for the use in analyses.
 
-Every diversity metric has its own file named based on the diversity facet (taxonomic = tax; functional = fun; phylogenetic = phy), species pool (contemporary = mod;native = his), and diverstiy metric (Btotal = total beta diversity; Brepl = replacement component; Bric = richness difference component; local contributon to beta diversity = LCBD; alpha = alpha diversity). 
-
-*facet*_*pool*_*metric*_ses_out.rds
-
+Each diversity metric has its own file name in the following format:
+> *facet* _ *pool* _ *metric* _ses_out.rds
+* *facet*: diversity facet (taxonomic = tax; functional = fun; phylogenetic = phy)
+* *pool*: species pool (contemporary = mod; native = his)
+* *metric*: diversity metric (Btotal = total beta diversity; Brepl = replacement component; Bric = richness difference component; local contribution to beta diversity = LCBD; alpha = alpha diversity)
 
 All files contain a list with the following structure:
-* ```$obs```:
-* ```$null_mean```:
-* ```$null_sd```:
-* ```$ses```:
-* ```$empirical_pvalue```:
-* ```$empirical_es```:
-* ```$skew```:
-* ```$kurt```:
+* ```$obs```: observed diversity values
+* ```$null_mean```: means of null distributions
+* ```$null_sd```: standards deviation of null distributions
+* ```$ses```: z-score based standardized effect sizes: ```(obs - null_mean)/null_sd)```
+* ```$empirical_pvalue```: proportion of null distribution with higher values than observed value
+* ```$empirical_es```: Empirical p-value based effect sizes ```probit(1-empirical_pvalue)```
+* ```$skew```: skewness of null distribution
+* ```$kurt```: kurtosis of null distribution
 
-The strucuture of the values in each list item are dependent on diversitt metric: 
+The structure of the values in each list item are dependent on diversity metric: 
 * beta diversity components (Btotal, Brepl, and Brich): distance objects,
 * LCBD: data frame with rows for each site and a column for LCBD of Btotal, Brepl, and Bric 
-* alpha: named numeric objects. 
+* alpha: named numeric objects.
+
 
 
 ## Diversity Output Data
