@@ -231,7 +231,7 @@ The combined observed and summarized effect size data for native alpha, native L
     * ```phy_Btotal_es```: Empirical effect size of change in ```phy_Btotal```
     * ```phy_Brepl_es```: Empirical effect size of change in ```phy_Brepl```
     * ```phy_Brich_es```: Empirical effect size of change in ```phy_Brich```
-* ```native_lcbd```: Observed and ES values of taxonomic (no ES), functional, and phylogenetic local contributions to beta diversity (LCBD) for the native species pool. These data are used as explanatory variables in main analyses. Data frame consisting of the same structure as ```delta_lcbd.rds```, but LCBD values are for the native species, not a change over time.
+* ```native_lcbd.rds```: Observed and ES values of taxonomic (no ES), functional, and phylogenetic local contributions to beta diversity (LCBD) for the native species pool. These data are used as explanatory variables in main analyses. Data frame consisting of the same structure as ```delta_lcbd.rds```, but LCBD values are for the native species, not a change over time.
 * ```native_alpha.rds```: Observed and ES values of functional and phylogenetic richness for the native species pool. These data are used as explanatory variables in main analyses. Data frame consisting of the following columns:
     * ```COMID```: Unique identifier for each stream segment.
     * ```fun_his_alpha```: Functional richness measured as the volume of kernel density hypervolumes.
@@ -242,15 +242,6 @@ The combined observed and summarized effect size data for native alpha, native L
 
 ## Analysis data
 OVERVIEW DESCRIPTION. TALK ABOUT HOW RESPONSE DATA IS IN PREVIOUS STEP
-
-### Spatial data
-We mapped the spatial distribution of changes in LCBD by aggregating data to the HUC6 basin level. Doing so requires a bridge between COMIDs and HUC6, which we provide
-* ```BLANK.rds```: Links HUC6 watersheds to COMID stream segments. Data frame with columns for:
-    * COMID
-    * HUC6
-
-```BLANK.rds``` can be used to merge LCBD values into HUC6 shapefiles, which can be downloaded from the [USGS National Hydrography Watershed Boundary Dataset](https://www.usgs.gov/national-hydrography/watershed-boundary-dataset). Once downloaded, place files in ```analysis_data/``` directory
-
 
 ### Origin-based invadedness
 We estimated the effects community invadedness by nonnative species of differnt geographic orgins on changes in LCBD. We used the raw community data estimated total species richness, native species richness, and the richness of three classes of nonnative species using origin-base defintions intoduced by [Thompson et al., (2025)](https://doi.org/10.1111/geb.13951). We are not able to publicly share the raw community data but provided teh summarized richness values
@@ -268,7 +259,11 @@ TALK ABOUT WHERE TO DOWNLOAD
 
 
 ### BIOTIC FACTORS
-TALK ABOUT WHERE SPECIE RICHNESS AND EFFECT SIZES ARE FOUND
+We estimated the effects of native alpha diversity and LCBD on changes in LCBD. These values can be found in [Diversity Output Data](#diversity-output-data) in the following files: ```native_lcbd.rds``` and ```native_alpha.rds```.
+
+### Spatial data
+We mapped the spatial distribution of changes in LCBD by aggregating data to the HUC6 basin level. Doing so requires ```BLANK.rds``` to bridge between COMIDs and HUC6. Once bridged, LCBD values can be attached to HUC6 shapefiles downloaded from the [USGS National Hydrography Watershed Boundary Dataset](https://www.usgs.gov/national-hydrography/watershed-boundary-dataset). Place downloaded shapefiles in ```analysis_data/``` directory.
+
 
 
 
