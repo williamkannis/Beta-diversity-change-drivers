@@ -111,11 +111,11 @@ Batch SES processing results in a single file for each diversity metric. The fol
 
 * ```14_ses_comp.R```
 
-<ins>NOTE:</ins> This is final step for creating null model effect sizes for alpha, beta, and LCBD diversity values. All remaining workflow is for replication of the manuscripts results. Additionally, we provide the raw and summarized observed and null iterations, as well as the formatted alpha and LCBD values used for manuscripts analyses. See [BLANK]() for more details. THINK ABOUT WHAT DATA TO SHARE HERE
+<ins>NOTE:</ins> This is final step for creating null model effect sizes for alpha, beta, and LCBD diversity values. All remaining workflow is for replication of the manuscripts results. To facilitate replication, we provide the raw [observed](#observed-diversity-data), raw [null iterations](#null-iterations), [summarized null model results](#summarized-null-model-outputs), and the [formatted alpha and LCBD values](#diversity-output-data) used for manuscripts analyses.
 
 
 ### Redundancy analaysis - perform on local machine
-The below script prepares the explanatory variables for used in redundancy analysis (RDA) of multidimensional changes in LCBD. The script loads in data for nonnative origin based invadedness, propagule pressure, abiotic habitat characteristics, habitat alteration, and native alpha diversity and LCBD. We make all data for explanatory variable available or explain how to access the data. See [BLANK]() for more information.
+The below script prepares the explanatory variables for used in redundancy analysis (RDA) of multidimensional changes in LCBD. The script loads in data for nonnative origin based invadedness, propagule pressure, abiotic habitat characteristics, habitat alteration, and native alpha diversity and LCBD. This script also summarizes community invadedness by species origin and creates the table for Appendix 7. We make all data for explanatory variable available or explain how to access the data. See [Analysis Data](#analysis-data) for more information.
 * ```15_rda_predictor_prep.R```
 
 The below script conducts forward selection, redundancy analysis, and variance partition for both raw (observed) and null model standardized (ES) change in LCBD values. Script also contains code to export tables and plots for analyses.
@@ -244,7 +244,17 @@ We directly provided the data or the sources to the data required to replicate t
 
 ### Origin-based invadedness
 We estimated the effects community invadedness by nonnative species of different geographic origins on changes in LCBD. We used the raw community data estimated total species richness, native species richness, and the richness of three classes of nonnative species using origin-base definitions introduced by [Thompson et al., (2025)](https://doi.org/10.1111/geb.13951). We are not able to publicly share the raw community data but provided the summarized richness values and r script ```origin_invaded_prep.R``` used to generate the data. The R script and data can be downloaded from ```analysis_data.zip``` at the [Zenodo repository]() and unzipped into the working directory.
-* ```origin_invaded.rds```:
+* ```origin_invaded.rds```: Species richness based on origin based native status, community invadedness, and region to site bridge data. Data frame with the following columns:
+    * ```HUC_12```: Unique identifier for each subwatershed (HUC_12) via the [National Watershed Boundary dataset](https://www.usgs.gov/national-hydrography/watershed-boundary-dataset). Can be used to link stream segment to any level of watershed organization (i.e., HUC2-12).
+    * ```COMID```: Unique identifier for each stream segment.
+    * ```nTaxA```: Number of species native to HUC8
+    * ```prov```: Number of provincially nonnative species. These are species nonnative to the province (HUC8), but native to the region (HUC2).
+    * ```reg```:  Number of regionally nonnative species. These are species nonnative to region, but native to the realm (continent).
+    * ```extr```:  Number of extra-realm nonnative species. These are species nonnative to the realm.
+    * ```tot_sp```: Total number of species (native and nonnative).
+    * ```invProv```: Community invadedness (i.e., Proportion of total species richness) by provincially nonnative species.
+    * ```invReg```: Community invadedness by regionally nonnative species.
+    * ```invExtr```: Community invadedness by extra-realm nonnative species.
 
 ### Propagule pressure
 We estimated the effects of recreational fishing demand on changes in LCBD using a metric created by [Mazzotta et al. (2015)](https://doi.org/10.1016/j.ecolecon.2015.09.018) and [Davis and Darling (2017)](https://doi.org/10.1111/ddi.12557). These data can be downloaded from the [EPA EnviroAtlas](https://www.epa.gov/enviroatlas) and placed into the ```analysis_data/``` directory.
