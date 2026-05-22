@@ -29,7 +29,7 @@ Key R packages for Diveristy input prep
 * 
 
 ### Create file directories
-First, download the ```Scripts``` folder (all users) and all data from [Zenodo Repository]() (users replicating results). Next, users will need to create the below file directory to store diversity input data (e.g. community, trait, phylogeny), formatted high performance computation input data, and the resulting diversity outputs.
+First, download the ```Scripts``` folder (all users), all data from [Zenodo Repository]() (users replicating results), and all explanatory variables from data sources listed [here](analysis_data). Next, users will need to create the below file directory to store diversity input data (e.g. community, trait, phylogeny), formatted high performance computation input data, and the resulting diversity outputs.
 
 ```bash
 ├── Scripts
