@@ -249,20 +249,20 @@ We estimated the effects community invadedness by nonnative species of differnt 
 
 
 ### Propagule pressure - recreational fishing demand
-TALK ABOUT SOURCE
+We estimated the effects of recreational fishing demand on changes in LCBD using a metric created by [Mazzotta et al. (2015)](https://doi.org/10.1016/j.ecolecon.2015.09.018) and [Davis and Darling (2017)](https://doi.org/10.1111/ddi.12557). These data can be downloaded from the [EPA EnviroAtlas](https://www.epa.gov/enviroatlas) and placed into the ```analysis_data/``` directory.
 
-### Abiotic habitat charactersitics 
-TALK ABOUT STREAMCAT FUNCTION
+### Abiotic habitat characteristics 
+We estimated the effects of elevation, 30-year mean temperature, base flow index, and upstream watershed area. These data are all downloaded in ```15_rda_predictor_prep.R``` using the ```'StreamCatTools'``` package. See [here](https://github.com/USEPA/StreamCatTools) for more information on the ```'StreamCatTools'``` package.
 
-### Abiotic habitat alteration - HAI
-TALK ABOUT WHERE TO DOWNLOAD
+### Abiotic habitat alteration
+We estimated the effects of hydrological alteration on changes in LCBD using an index of hydrological alteration developed by [McManamay et al.,(2020)](https://doi.org/10.1038/s41597-022-01566-1). These data can be downloaded [here](https://zenodo.org/record/5839011) and placed into the ```analysis_data/``` directory.
 
 
-### BIOTIC FACTORS
-We estimated the effects of native alpha diversity and LCBD on changes in LCBD. These values can be found in [Diversity Output Data](#diversity-output-data) in the following files: ```native_lcbd.rds``` and ```native_alpha.rds```.
+### Biotic Factors
+We estimated the effects of native alpha diversity and LCBD on changes in LCBD. Information on obtaining these values can be found in [Diversity Output Data](#diversity-output-data) in the following files: ```native_lcbd.rds``` and ```native_alpha.rds```.
 
 ### Spatial data
-We mapped the spatial distribution of changes in LCBD by aggregating data to the HUC6 basin level. Doing so requires ```BLANK.rds``` to bridge between COMIDs and HUC6. Once bridged, LCBD values can be attached to HUC6 shapefiles downloaded from the [USGS National Hydrography Watershed Boundary Dataset](https://www.usgs.gov/national-hydrography/watershed-boundary-dataset). Place downloaded shapefiles in ```analysis_data/``` directory.
+We mapped the spatial distribution of changes in LCBD by aggregating data to the HUC6 basin level. Doing so requires ```BLANK.rds``` to bridge between COMIDs and HUC6. Once bridged, LCBD values can be attached to HUC6 shapefiles downloaded from the [USGS National Hydrography Watershed Boundary Dataset](https://www.usgs.gov/national-hydrography/watershed-boundary-dataset). Place downloaded shapefiles in the ```analysis_data/``` directory.
 
 
 
