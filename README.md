@@ -239,16 +239,14 @@ The combined observed and summarized effect size data for native alpha, native L
     * ```fun_his_alpha_es```: Empirical effect size of ```fun_his_alpha```
     * ```phy_his_alpha_es```: Empirical effect size of ```phy_his_alpha```
 
-
 ## Analysis data
-OVERVIEW DESCRIPTION. TALK ABOUT HOW RESPONSE DATA IS IN PREVIOUS STEP
+We directly provided the data or the sources to the data required to replicate the redundancy analysis, variance partitioning, and spatial analysis. The response variables ```delta_lcbd.rds``` and biotic explanatory variables ```native_lcbd.rds``` ```native_alpha.rds``` for analyses can be found in [Diversity Output Data](#diversity-output-data). Information on how to access the remainder of the explanatory variables is listed below.
 
 ### Origin-based invadedness
-We estimated the effects community invadedness by nonnative species of differnt geographic orgins on changes in LCBD. We used the raw community data estimated total species richness, native species richness, and the richness of three classes of nonnative species using origin-base defintions intoduced by [Thompson et al., (2025)](https://doi.org/10.1111/geb.13951). We are not able to publicly share the raw community data but provided teh summarized richness values
-*```BLANK.rds```:
+We estimated the effects community invadedness by nonnative species of different geographic origins on changes in LCBD. We used the raw community data estimated total species richness, native species richness, and the richness of three classes of nonnative species using origin-base definitions introduced by [Thompson et al., (2025)](https://doi.org/10.1111/geb.13951). We are not able to publicly share the raw community data but provided the summarized richness values and r script ```BLANK.R``` used to generate the data. The R script and data can be downloaded from ```analysis_data.zip``` at the [Zenodo repository]() and unzipped into the working directory.
+* ```BLANK.rds```:
 
-
-### Propagule pressure - recreational fishing demand
+### Propagule pressure
 We estimated the effects of recreational fishing demand on changes in LCBD using a metric created by [Mazzotta et al. (2015)](https://doi.org/10.1016/j.ecolecon.2015.09.018) and [Davis and Darling (2017)](https://doi.org/10.1111/ddi.12557). These data can be downloaded from the [EPA EnviroAtlas](https://www.epa.gov/enviroatlas) and placed into the ```analysis_data/``` directory.
 
 ### Abiotic habitat characteristics 
@@ -257,17 +255,11 @@ We estimated the effects of elevation, 30-year mean temperature, base flow index
 ### Abiotic habitat alteration
 We estimated the effects of hydrological alteration on changes in LCBD using an index of hydrological alteration developed by [McManamay et al.,(2020)](https://doi.org/10.1038/s41597-022-01566-1). These data can be downloaded [here](https://zenodo.org/record/5839011) and placed into the ```analysis_data/``` directory.
 
-
 ### Biotic Factors
 We estimated the effects of native alpha diversity and LCBD on changes in LCBD. Information on obtaining these values can be found in [Diversity Output Data](#diversity-output-data) in the following files: ```native_lcbd.rds``` and ```native_alpha.rds```.
 
 ### Spatial data
 We mapped the spatial distribution of changes in LCBD by aggregating data to the HUC6 basin level. Doing so requires ```BLANK.rds``` to bridge between COMIDs and HUC6. Once bridged, LCBD values can be attached to HUC6 shapefiles downloaded from the [USGS National Hydrography Watershed Boundary Dataset](https://www.usgs.gov/national-hydrography/watershed-boundary-dataset). Place downloaded shapefiles in the ```analysis_data/``` directory.
-
-
-
-
-
 
 
 
