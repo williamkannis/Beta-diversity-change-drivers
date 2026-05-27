@@ -210,7 +210,7 @@ All files contain a list with items for each null iteration. Each beta diversity
 
    
 ## Summarized null model outputs
-The summarized null model analyses results for all diversity metrics can be downloaded from ```BLANK.zip``` at the [Zenodo repository]() and unzipped into the ```HPC_data/``` directory. These data are used to evaluate the properties of the null distributions to choose between standardized effect sizes and empirical effect sizes, and can be merged together for plotting and to create the final dataframes for the use in analyses.
+The summarized null model analyses results for all diversity metrics can be downloaded from ```ses_out.zip``` at the [Zenodo repository]() and unzipped into the ```HPC_data/``` directory. These data are used to evaluate the properties of the null distributions to choose between standardized effect sizes and empirical effect sizes, and can be merged together for plotting and to create the final dataframes for the use in analyses.
 
 Each diversity metric has its own file name in the following format:
 > *facet*\_*pool*\_*metric*\_ses_out.rds
