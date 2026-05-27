@@ -2,20 +2,22 @@
 ## Contact information and citation
 
 ```bash
-Name:
+Name: William K. Annis
 
-Email:
+Email: wannis@fsu.edu, williamkannis@gmail.com
 
 OrcID:
 ```
 Cite as:
 > CITE
 
+
 ## Analysis work flow
-Here, we provide code and a general workflow for calculating null model standardized alpha diversity, beta diversity, and LCBD values. Standardized effect sizes (SES) are calculated for two species pools (contemporary and native only), as well as for the change in diversity between species pools. See the manuscript for more detailed methodology and justification. This workflow is designed to run using R on local machines with the more intensive calculations ran using high performance computing clusters via the slurm interface and shell scripts. R and shell scripts are numbered in order of workflow.  Scripts 1-14 are coded to be general so that users can calculate SES using their own diversity values. We used this framework to create the diversity values used the analyses in this manuscript. Scripts 15-17 are less general and are provided with the goal of transparency and result replication. We provided both raw and formatted null model data to replicate analyses from Script 11 onward. We are unable to directly provide the raw community or trait data that facilitate replication of scripts 1-10, but provide additional code and workflow information regarding the filtering and formatting of the diversity input data (i.e., community, trait, phylogeny). The final phylogenetic tree, and information for accessing community and trait data can be found [here](#diversity-input-data).
+Here, we provide code and a general workflow for calculating null model standardized alpha diversity, beta diversity, and local contribution to beta diversity (LCBD) values. Standardized effect sizes (SES) were calculated for two species pools (contemporary and native only), as well as for the change in diversity between species pools. See the manuscript for more detailed methodology and justification. This workflow is designed to run using R on local machines with the more expensive calculations ran using high performance computing clusters via the slurm interface and shell scripts. R and shell scripts are numbered in order of workflow.  Scripts 1-14 are coded to be general so that users can calculate SES using their own diversity values. We used this framework to create the diversity values used the analyses in this manuscript. Scripts 15-17 are less general and are provided with the goal of transparency and result replication. We provided both raw and formatted null model data, explanatory variables, and the sources for publicly available explanatory data to replicate analyses from Script 11 onward. We are unable to directly provide the raw community or trait data that facilitate replication of scripts 1-10, but provide additional code and workflow information regarding the filtering and formatting of the diversity input data (i.e., community, trait, phylogeny). The final phylogenetic tree, and information for accessing community and trait data can be found [here](#diversity-input-data).
+
 
 ### Required Software
-**R version**:
+**R version**: 4.5.0
 
 R packages for null model workflow
 * ```'ade4'``` version: 1.7.23
@@ -31,7 +33,6 @@ R packages for null model workflow
 * ```'tibble'``` version: 3.2.1
 * ```'VGAM'```  version: 1.1.14
 
-
 R packages for mansucript analysis replication
 * ```'sf'``` version: 1.0.20
 * ```'StreamCatTools'``` version: 0.10.0
@@ -44,8 +45,9 @@ R packages for Diveristy input prep
 * ```'RRphylo'``` version: 3.0.2
 * ```'stringr'``` version: 1.5.1
 
+
 ### Create file directories
-First, download the ```Scripts``` folder (all users), all data from [Zenodo Repository]() (users replicating results), and all explanatory variables from data sources listed [here](#analysis-data). Next, users will need to create the below file directory to store diversity input data (e.g. community, trait, phylogeny), formatted high performance computation input data, and the resulting diversity outputs.
+First, download the ```Scripts``` folder (all users), all data from [Zenodo Repository]() (users replicating results), and all explanatory variables (users replicating results) from data sources listed [here](#analysis-data). Next, users will need to create the below file directory to store diversity input data (e.g. community, trait, phylogeny), formatted high performance computation input data, and the resulting diversity outputs.
 
 ```bash
 ├── Scripts
@@ -70,7 +72,7 @@ First, download the ```Scripts``` folder (all users), all data from [Zenodo Repo
 ├── Analysis_data
 └── Results
 ```
-Place community data for both species pools (contemporary and native), trait data, and phylongetic trees in ```Diversity Input Data``` with the following names: 
+Place community data for both species pools (contemporary - "mod" and native - "his"), trait data, and phylongetic trees in ```Diversity Input Data``` with the following names: 
 * ```mod_com_diversity_input.rds```: Community data for contemporary species pool. Dataframe or matrix with rows for sites and columns for species. Can contain an optional column ```HUC_12``` which represent regions and can be used to define regional species pools.
 * ```his_com_diversity_input.rds```: Community data for native-only species pool. Same structure as ```mod_com_diversity_input.rds```
 * ```trait_diversity_input.rds```: Trait data for all species in community data. Dataframe or matrix with rows for species and columns for traits.
@@ -80,8 +82,9 @@ Place community data for both species pools (contemporary and native), trait dat
 
 <ins>NOTE:</ins> If replicating the results of analysis (Script 11 onward) by downloading data from the [Zenodo respository](), the .zip files will create duplicate folders. It is recommended to download all data before creating new file structures.
 
+
 ### Prepare input data - perform on local machine
-To best take advantage of high performance computation, we need to format our data in a manner that allows for parallel processing of diversity metrics. As we need to estimate 999 null iterations of each diversity metric and species pool (native only and contemporary), we want to prepare input data that can run simultaneously. For beta diversity null models, we need to generate 999 shuffled trait matrices and phylogenetic trees. For native alpha diversity, we need to generate 999 random community matrices. A benefit to HPC is that processes can be ran on a high number of cores among multiple computer nodes. To take advantage of HPC, we need to divide the list of null traits, trees, and/or communities into chunks based on CPU and memory limits per each node. These chunk can be ran on separate computer nodes. This reduces memory requirements within nodes and allows for better queue times. 
+To best take advantage of high performance computation, we need to format our data in a manner that allows for parallel processing of diversity metrics. As we need to estimate 999 null iterations of each diversity metric and species pool (native only and contemporary), we want to prepare input data that can run iterations simultaneously. For beta diversity null models, we need to generate 999 shuffled trait matrices and phylogenetic trees. For native alpha diversity, we need to generate 999 random community matrices. A benefit to HPC is that processes can be ran on a high number of cores among multiple computer nodes. To take advantage of HPC, we need to divide the list of null traits, trees, and/or communities into chunks based on CPU and memory limits per each node. These chunks can be ran on separate computer nodes. This reduces memory requirements within nodes and allows for better queue times. 
 
 The following script imports ```mod_com_diversity_input.rds```, ```his_com_diversity_input.rds```, ```trait_diversity_input.rds```, and ```phylo_tree.rds```. These data are then used to create reduced functional space using PCoA and trims trees to fit community data. Both observed and null input data lists for alpha and beta diversity are then created and divided into chunks to run on separate HPC nodes.
 * ```01_null_input_creation.R```
@@ -110,20 +113,22 @@ The below shell scripts call in their corresponding R scripts to estimate null i
 
 <ins>TIP:</ins> Number of nodes, cores per node, and memory per node will vary based on number of sites and methodology. Shell scripts can be edited to adjust these settings accordingly. For example: 1000 nodes: ```#SBATCH --array=1-1000```, 2 CPU cores per node: ```SBATCH --cpus-per-task=2 ```, 18gb ram per node :```#SBATCH --mem=18gb```. We recommend that users experiment with memory and CPU requirements with smaller number of null iterations before running full job.
 
+
 ### Calculate effect sizes - perform using HPC
-Observed and null model outputs were exported in multiple files, reflecting the multi-nodal processing. We need to consolidate these files into single files that contain a list of each null iteration.  The below shell scripts run their respective R script to consolidate null model outputs into single files, separate native and contemporary species pool values, estimate the difference in diversity over time (delta), and export a single file for each diversity metric (i.e., alpha, total beta, replacement, richness difference, LCBD) for the contemporary species pool, native only species pool, and delta values.
+Observed and null model outputs were exported in multiple files, reflecting the multi-nodal processing. We need to consolidate these files into single files that contain a list of each null iteration.  The below shell scripts run their respective R script to consolidate null model outputs into single files, separate native and contemporary species pool values, estimate the difference in diversity between contemporary and native pools (delta), and export a single file for each diversity metric (i.e., alpha, total beta, replacement, richness difference, LCBD) for the contemporary species pool, native only species pool, and delta values.
 
 * ```11_beta_null_model_prep.sh``` - ```11_beta_null_model_prep.R```
 * ```12_alpha_null_model_prep.sh``` - ```12_alpha_null_model_prep.R```
 
-The lists from the functions above contain the observed values and a list of null iterations for each metric and species pool. The following shell script will run the respective R script, which estimates standardize effect sizes (SES) of each single metric. This step involves calling in a SES function created for this project: ```null_model_effect_size_function.R```. This function is flexible a takes a range of input formats such as dataframes, vectors, matrices, and distance objects, and maintains this format in the exported values. The function estimates standardize effect sizes in the traditional z score method (SES). Additionally empirical p-values, and p-value based effect sizes (ES) are calculated. Finally the function reports optional diagnostic metric to assess if null distributions are symmetrical and normal. Unsymmetrical null distributions should be assessed using empirical p-value based effect sizes rather than z-score based SES. See [Botta-Dukát (2018](https://doi.org/10.1556/168.2018.19.1.8) for more information on selecting SES or p-value based ES.
+The lists from the functions above contain the observed values and a list of null iterations for each metric and species pool. The next shell script will run the respective R script, which estimates standardize effect sizes (SES) of each single metric. This step involves calling in a SES function created for this project: ```null_model_effect_size_function.R```. This function is flexible and takes a range of input formats such as dataframes, vectors, matrices, and distance objects, and maintains this format in the exported values. The function estimates standardize effect sizes in the traditional z score method (SES). Additionally empirical p-values, and p-value based effect sizes (ES) are calculated. Finally the function reports optional diagnostic metric to assess if null distributions are symmetrical and normal. asymmetrical null distributions should be assessed using empirical p-value based effect sizes rather than z-score based SES. See [Botta-Dukát (2018](https://doi.org/10.1556/168.2018.19.1.8) for more information on selecting SES or p-value based ES.
 
 * ```13_batch_ses.sh``` - ```13_batch_ses.R```
 
 After running the above scripts, download the entire ```HPC_data``` directory to local machine.
 
+
 ### Summarize null model results - perform on local machine
-Batch SES processing results in a single file for each diversity metric. The following R script compiles and formats the resulting SES, ES, and diagnostic stats across files. Here, we can visualize the normality diagnostics and determine if we need to use SES or ES values for further analysis. The script also visualizes beta diversity and LCBD change values and creates plots for the manuscript. Finally, the script prepares and exports native alpha/LCBD and delta LCBD for use in the manuscripts analyses.
+Batch SES processing results in a single file for each diversity metric. The following R script compiles and formats the resulting SES, ES, and diagnostic stats across files. Here, we can visualize the normality diagnostics and determine if we need to use SES or ES values for further analysis. The script also visualizes beta diversity and LCBD change values and creates plots for Figure 4 in the manuscript. Finally, the script prepares and exports native alpha/LCBD and delta LCBD for use in the manuscripts analyses.
 
 * ```14_ses_comp.R```
 
@@ -131,16 +136,18 @@ Batch SES processing results in a single file for each diversity metric. The fol
 
 
 ### Redundancy analaysis - perform on local machine
-The below script prepares the explanatory variables for used in redundancy analysis (RDA) of multidimensional changes in LCBD. The script loads in data for nonnative origin based invadedness, propagule pressure, abiotic habitat characteristics, habitat alteration, and native alpha diversity and LCBD. This script also summarizes community invadedness by species origin and creates the table for Appendix 7. We make all data for explanatory variable available or explain how to access the data. See [Analysis Data](#analysis-data) for more information.
+The below script prepares the explanatory variables for used in redundancy analysis (RDA) of multidimensional changes in LCBD. The script loads in data for nonnative origin-based invadedness, propagule pressure, abiotic habitat characteristics, habitat alteration, and native alpha diversity and LCBD. This script also summarizes community invadedness by species origin and creates the table for Appendix 7. We make all data for explanatory variable available or explain how to access the data. See [Analysis Data](#analysis-data) for more information.
 * ```15_rda_predictor_prep.R```
 
-The below script conducts forward selection, redundancy analysis, and variance partition for both raw (observed) and null model standardized (ES) change in LCBD values. Script also contains code to export tables and plots for analyses.
+The below script conducts forward selection, redundancy analysis, and variance partition for both raw (observed) and null model standardized (ES) change in LCBD values. Script also contains code to export tables and plots for figure 6 and appendix 8 of the manuscript.
 * ```16_rda_varpart.R```
+
 
 ### Spatial plotting - perform on local machine
 
-The following script aggregates the delta LCBD values from stream segment to HUC6 basin resolution to visualize spatial patterns of changes in LCBD of total beta diversity. Shapefiles are exported into QGIS for mapping and formatting
+The following script aggregates the delta LCBD values from stream segment to HUC6 basin resolution to visualize spatial patterns of changes in LCBD of total beta diversity. Shapefiles are exported into QGIS for mapping and formatting to create Figure 5 in manuscript.
 * ```17_lcbd_spatial.R```
+
 
 ### Helper functions
 * ```null_model_algorithms.R```: Contains algorithms to randomize community, trait, or phylogenetic data for null model analysis
