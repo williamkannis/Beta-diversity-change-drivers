@@ -17,16 +17,32 @@ Here, we provide code and a general workflow for calculating null model standard
 ### Required Software
 **R version**:
 
-Key R packages for null model workflow
-* ```'BAT'``` version:
-* ```'dplyr'``` version:
+R packages for null model workflow
+* ```'ade4'``` version: 1.7.23
+* ```'adespatial'``` version: 0.3.28
+* ```'ape'``` version: 5.8.1
+* ```'BAT'``` version: 2.11.0
+* ```'DescTools'``` version: 0.99.60
+* ```'dplyr'``` version: 1.1.4
+* ```'ggplot2'``` version: 4.0.2
+* ```'matrixStats'``` version: 1.5.0
+* ```'parallel'``` version: 4.5.0
+* ```'purrr'``` version: 1.1.0
+* ```'tibble'``` version: 3.2.1
+* ```'VGAM'```  version: 1.1.14
 
-Key R packages for mansucript analysis replication
-* ```'vegan'``` version:
 
-Key R packages for Diveristy input prep
-* ```‘fishtree’``` version:
-* 
+R packages for mansucript analysis replication
+* ```'sf'``` version: 1.0.20
+* ```'StreamCatTools'``` version: 0.10.0
+* ```'tidyr'``` version: 1.3.1
+* ```'vegan'``` version: 2.6.10
+
+R packages for Diveristy input prep
+* ```'fishtree'``` version: 0.3.4’
+* ```'picante'``` version: 1.8.2
+* ```'RRphylo'``` version: 3.0.2
+* ```'stringr'``` version: 1.5.1
 
 ### Create file directories
 First, download the ```Scripts``` folder (all users), all data from [Zenodo Repository]() (users replicating results), and all explanatory variables from data sources listed [here](#analysis-data). Next, users will need to create the below file directory to store diversity input data (e.g. community, trait, phylogeny), formatted high performance computation input data, and the resulting diversity outputs.
